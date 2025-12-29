@@ -1,8 +1,10 @@
 import pygame
 import numpy as np
 import random
+import asyncio
 #import csv
 #import os
+print("MAIN.PY VERSION: 2025-12-27 A")
 
 # Base sizes
 base_width = 800
@@ -17,6 +19,12 @@ muted = False
 selected_weapon = None
 selected_level = None
 music_started = False
+font_18 = None
+font_22 = None
+font_25 = None
+font_26 = None
+font_30 = None
+font_32 = None
 
 # Pirate shots settings
 pirate_cannon_bullets = []
@@ -94,15 +102,6 @@ pending_player_turn = False
 player_turn_message_timer = 0.0
 last_player_message = ""
 
-# Saving the pixel text font
-pygame.font.init()
-font_18 = pygame.font.Font("fonts/pixel_reg.ttf", 18)
-font_22 = pygame.font.Font("fonts/pixel_reg.ttf", 22)
-font_25 = pygame.font.Font("fonts/pixel_reg.ttf", 25)
-font_26 = pygame.font.Font("fonts/pixel_reg.ttf", 26)
-font_30 = pygame.font.Font("fonts/pixel_reg.ttf", 30)
-font_32 = pygame.font.Font("fonts/pixel_reg.ttf", 32)
-
 # Creating a function for multiline text
 def draw_multiline_text(screen, text, font, color, pos, line_spacing=0):
     x, y = pos
@@ -112,10 +111,21 @@ def draw_multiline_text(screen, text, font, color, pos, line_spacing=0):
         y += surface.get_height() + line_spacing
 
 # Screen Setup
-def main():
+async def main():
     global screen, keys
+    global font_18, font_22, font_25, font_26, font_30, font_32
+    
     pygame.init()
-    pygame.mixer.init()
+    #pygame.mixer.init()
+
+    # Saving the pixel text font
+    pygame.font.init()
+    font_18 = pygame.font.Font("fonts/pixel_reg.ttf", 18)
+    font_22 = pygame.font.Font("fonts/pixel_reg.ttf", 22)
+    font_25 = pygame.font.Font("fonts/pixel_reg.ttf", 25)
+    font_26 = pygame.font.Font("fonts/pixel_reg.ttf", 26)
+    font_30 = pygame.font.Font("fonts/pixel_reg.ttf", 30)
+    font_32 = pygame.font.Font("fonts/pixel_reg.ttf", 32)
 
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Aye Arr Arr (IRR) Game") # Setting the Windows title
@@ -139,6 +149,8 @@ def main():
         update()
         draw()
         pygame.display.flip()
+        
+        await asyncio.sleep(0)
 
     pygame.quit()
 
@@ -1083,11 +1095,14 @@ def on_mouse_down(pos):
     global music_started
 
     if not music_started:
-        pygame.mixer.music.load("music/sea_shanty_2.mp3")
-        pygame.mixer.music.set_volume(volume)
-        pygame.mixer.music.play(-1) # 0: Play once; 1: Loop 1 extra time (total plays: 2); -1: Loop indefinitely until you stop it
-        
-        music_started = True
+        try:
+            pygame.mixer.init()
+            pygame.mixer.music.load("music/sea_shanty_2.ogg")
+            pygame.mixer.music.set_volume(volume)
+            pygame.mixer.music.play(-1) # 0: Play once; 1: Loop 1 extra time (total plays: 2); -1: Loop indefinitely until you stop it
+            music_started = True
+        except Exception as e:
+            print("Music failed to load:", e)
 
     if current_screen == "Menu":
 
@@ -1106,22 +1121,20 @@ def on_mouse_down(pos):
 
             if btn_vol_up.collidepoint(pos):
                 volume = min(1.0, volume + 0.1)
-                if not muted: # Only updates when not muted
+                if music_started and not muted: # Only updates when not muted
                     pygame.mixer.music.set_volume(volume)
                 print("Volume up:", round(volume, 2))
 
             elif btn_vol_down.collidepoint(pos):
                 volume = max(0.0, volume - 0.1)
-                if not muted:
+                if music_started and not muted:
                     pygame.mixer.music.set_volume(volume)
                 print("Volume down:", round(volume, 2))
 
             elif btn_vol_mute.collidepoint(pos):
                 muted = not muted
-                if muted:
-                    pygame.mixer.music.set_volume(0)
-                else:
-                    pygame.mixer.music.set_volume(volume)
+                if music_started:
+                    pygame.mixer.music.set_volume(0 if muted else volume)
                 print("Muted:", muted)
 
 
@@ -1791,5 +1804,12 @@ def on_key_down(key):
             plunder_text = plunder_text[:3]
 
 
-if __name__ == "__main__":
-    main()
+def _start():
+    try:
+        loop = asyncio.get_running_loop()
+    except RuntimeError:
+        asyncio.run(main())
+    else:
+        loop.create_task(main())
+
+_start()
