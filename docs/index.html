@@ -290,7 +290,7 @@ config = {
             background-color: transparent;
             width: 100%;
             height: 100%;
-            z-index: 5;
+            z-index: 1;
 
             padding: 0;
             margin: 0 auto;
@@ -339,6 +339,23 @@ config = {
            right:10px;
            border: 1px solid black;
         }
+
+        .page{
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .game-wrap{
+            position: relative;
+            width: 1024px;
+            height: 600px;
+            margin: 0 auto 30px auto;
+            border: 2px solid black;
+            background: #808080;
+        }
+        
     </style>
 
     <script src="https://pygame-web.github.io/archives/0.9//browserfs.min.js"></script>
@@ -346,24 +363,32 @@ config = {
 </head>
 
 <body>
-<h1 style="text-align: center; font-weight: bold;">Internal Rate of Return - IRR</h1>
-<h1 style="text-align: center; font-size: 12px; font-weight: bold;">By Daniel Rabi, Myles Obrigewitsch, and Shelby Cyr</h1>
-    <div id="transfer" align=center>
-<!--        <div class="spinner" id='spinner'></div> -->
-        <div class="emscripten" id="status">Downloading...</div>
-        <div class="emscripten">
-            <progress value="0" max="100" id="progress"></progress>
+    <div class="page">
+        <h1 style="text-align: center; font-weight: bold;">
+            Internal Rate of Return - IRR
+        </h1>
+        <h1 style="text-align: center; font-size: 12px; font-weight: bold;">
+            By Daniel Rabi, Myles Obrigewitsch, and Shelby Cyr
+        </h1>
+
+    <div class="game-wrap">
+        <div id="transfer" align="center">
+            <div class="emscripten" id="status">
+                Downloading...
+            </div>
+            <div class="emscripten">
+                <progress value="0" max="100" id="progress"></progress>
+            </div>
         </div>
+
+        <canvas class="emscripten" id="canvas"
+            width="1px"
+            height="1px"
+            oncontextmenu="event.preventDefault()" tabindex="1"></canvas>
+
+        <div id="html"></div>
     </div>
-
-
-    <canvas class="emscripten" id="canvas"
-width="1px"
-height="1px"
-    oncontextmenu="event.preventDefault()" tabindex=1>
-    </canvas>
-
-    <div id=html></div>
+</div>
 
     <div id=crt  class=bottomright >
 
