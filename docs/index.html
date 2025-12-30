@@ -360,19 +360,18 @@ config = {
         
         .game-wrap{
           position: relative;
-          width: var(--game-w, 800px);
-          height: var(--game-h, 600px);
-          margin: 0;
+          width: 800px;
+          height: 600px;
           border: 2px solid black;
           overflow: hidden;
           background: transparent;
         }
         
         .game-scale{
-          display: inline-block; /* keep it simple */
+          display: inline-block;
+          transform: scale(var(--game-scale, 1));
+          transform-origin: top center;
         }
-
-
         
     </style>
 
@@ -540,10 +539,10 @@ frameborder="1"
       const BASE_H = 600;
     
       function setScale() {
-        const wrap = document.querySelector(".game-wrap");
+        const scaleEl = document.querySelector(".game-scale");
         const outer = document.querySelector(".game-outer");
         const header = document.querySelector(".header");
-        if (!wrap || !outer || !header) return;
+        if (!scaleEl || !outer || !header) return;
     
         const padding = 20;
     
@@ -551,10 +550,13 @@ frameborder="1"
         const headerH = header.getBoundingClientRect().height;
         const availH = window.innerHeight - headerH - padding;
     
-        const s = Math.min(availW / BASE_W, availH / BASE_H, 1);
+        const scale = Math.min(
+          availW / BASE_W,
+          availH / BASE_H,
+          1   // never upscale
+        );
     
-        wrap.style.setProperty("--game-w", `${Math.floor(BASE_W * s)}px`);
-        wrap.style.setProperty("--game-h", `${Math.floor(BASE_H * s)}px`);
+        scaleEl.style.setProperty("--game-scale", scale.toFixed(4));
       }
     
       window.addEventListener("resize", setScale);
