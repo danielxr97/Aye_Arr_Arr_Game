@@ -541,27 +541,28 @@ frameborder="1"
       function setScale() {
         const scaleEl = document.querySelector(".game-scale");
         const outer = document.querySelector(".game-outer");
-        const header = document.querySelector(".header");
-        if (!scaleEl || !outer || !header) return;
+        if (!scaleEl || !outer) return;
     
         const padding = 20;
     
         const availW = outer.clientWidth - padding;
-        const headerH = header.getBoundingClientRect().height;
-        const availH = window.innerHeight - headerH - padding;
     
-        const scale = Math.min(
-          availW / BASE_W,
-          availH / BASE_H,
-          1   // never upscale
-        );
+        // real vertical space left under the header/title
+        const top = outer.getBoundingClientRect().top;
+        const availH = window.innerHeight - top - padding;
     
+        const scale = Math.min(availW / BASE_W, availH / BASE_H, 1);
         scaleEl.style.setProperty("--game-scale", scale.toFixed(4));
       }
     
       window.addEventListener("resize", setScale);
       window.addEventListener("orientationchange", setScale);
-      setScale();
+    
+      // IMPORTANT: run after layout/fonts settle
+      window.addEventListener("load", () => {
+        setScale();
+        setTimeout(setScale, 50);
+      });
     })();
 
     </script>
