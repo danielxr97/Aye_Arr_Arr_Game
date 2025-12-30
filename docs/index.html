@@ -345,6 +345,13 @@ config = {
             background: transparent;
         }
 
+        .game-outer{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+
         .game-wrap{
             position: relative;
             width: 800px;
@@ -357,8 +364,6 @@ config = {
 
         .game-scale{
             display: inline-block;
-            width: 800px;
-            height: 600px;
             transform: scale(var(--game-scale, 1));
             transform-origin: top center;
         }
@@ -378,23 +383,27 @@ config = {
             By Daniel Rabi, Myles Obrigewitsch, and Shelby Cyr
         </h1>
 
-        <div class="game-scale">
-            <div class="game-wrap">
-                <div id="transfer" align="center">
-                    <div class="emscripten" id="status">
-                        Downloading...
-                    </div>
-                    <div class="emscripten">
-                        <progress value="0" max="100" id="progress"></progress>
-                    </div>
-                </div>
-    
-                <canvas class="emscripten" id="canvas"
-                    width="1px"
-                    height="1px"
-                    oncontextmenu="event.preventDefault()" tabindex="1"></canvas>
+        <div class="game-outer">
+            <div class="game-scale">
+                <div class="game-wrap">
         
-                <div id="html"></div>
+                    <div id="transfer" align="center">
+                        <div class="emscripten" id="status">
+                            Downloading...
+                        </div>
+                        <div class="emscripten">
+                            <progress value="0" max="100" id="progress"></progress>
+                        </div>
+                    </div>
+        
+                    <canvas class="emscripten" id="canvas"
+                        width="1px"
+                        height="1px"
+                        oncontextmenu="event.preventDefault()" tabindex="1"></canvas>
+        
+                    <div id="html"></div>
+        
+                </div>
             </div>
         </div>
     </div>
@@ -518,27 +527,23 @@ frameborder="1"
         window.frames["iframe"].location = url;
     }
 
-    (function (){
+    (function () {
   const BASE_W = 800;
   const BASE_H = 600;
 
-  function setScale(){
-  const scaleEl = document.querySelector(".game-scale");
-  const page = document.querySelector(".page");
-  if (!scaleEl || !page) return;
+  function setScale() {
+    const scaleEl = document.querySelector(".game-scale");
+    const outer = document.querySelector(".game-outer");
+    if (!scaleEl || !outer) return;
 
-  const padding = 20;
+    const padding = 20;
+    const availW = outer.clientWidth - padding;
+    const top = outer.getBoundingClientRect().top;
+    const availH = window.innerHeight - top - padding;
 
-  // available width is the page width (max 1200 already)
-  const availW = page.clientWidth - padding;
-
-  // available height: viewport height minus how far the game sits from top
-  const rect = scaleEl.getBoundingClientRect();
-  const availH = window.innerHeight - rect.top - padding;
-
-  const s = Math.min(availW / BASE_W, availH / BASE_H, 1);
-  scaleEl.style.setProperty("--game-scale", s.toFixed(4));
-}
+    const s = Math.min(availW / BASE_W, availH / BASE_H, 1);
+    scaleEl.style.setProperty("--game-scale", s.toFixed(4));
+  }
 
   window.addEventListener("resize", setScale);
   window.addEventListener("orientationchange", setScale);
