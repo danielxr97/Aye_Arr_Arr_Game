@@ -302,8 +302,9 @@ config = {
         body {
             font-family: arial;
             margin: 0;
-            padding: none;
+            padding: 0;
             background-color:powderblue;
+            overflow: hidden;
         }
 
         .topright{
@@ -345,28 +346,31 @@ config = {
             background: transparent;
         }
 
+        html, body{
+            height: 100%;
+        }
+        
         .game-outer{
             width: 100%;
             display: flex;
             justify-content: center;
+            padding: 14px 0 24px;
+            box-sizing: border-box;
         }
-
-
+        
         .game-wrap{
-            position: relative;
             width: 800px;
             height: 600px;
-            margin: 14px auto 24px auto;
+            margin: 0;              /* important */
             border: 2px solid black;
-            background: transparent;
             overflow: hidden;
         }
-
+        
         .game-scale{
-            display: inline-block;
             transform: scale(var(--game-scale, 1));
             transform-origin: top center;
         }
+
         
     </style>
 
@@ -376,12 +380,14 @@ config = {
 
 <body>
     <div class="page">
-        <h1 style="text-align: center; font-weight: bold;">
-            Internal Rate of Return - IRR
-        </h1>
-        <h1 style="text-align: center; font-size: 12px; font-weight: bold;">
-            By Daniel Rabi, Myles Obrigewitsch, and Shelby Cyr
-        </h1>
+        <div class="header">
+            <h1 style="text-align: center; font-weight: bold;">
+                Internal Rate of Return - IRR
+            </h1>
+            <h1 style="text-align: center; font-size: 12px; font-weight: bold;">
+                By Daniel Rabi, Myles Obrigewitsch, and Shelby Cyr
+            </h1>
+        </div>
 
         <div class="game-outer">
             <div class="game-scale">
@@ -534,12 +540,17 @@ frameborder="1"
   function setScale() {
     const scaleEl = document.querySelector(".game-scale");
     const outer = document.querySelector(".game-outer");
-    if (!scaleEl || !outer) return;
+    const header = document.querySelector(".header");
+    if (!scaleEl || !outer || !header) return;
 
     const padding = 20;
+
+    // width available inside the outer container
     const availW = outer.clientWidth - padding;
-    const top = outer.getBoundingClientRect().top;
-    const availH = window.innerHeight - top - padding;
+
+    // height available after the header (titles)
+    const headerH = header ? header.getBoundingClientRect().height : 0;
+    const availH = window.innerHeight - headerH - padding;
 
     const s = Math.min(availW / BASE_W, availH / BASE_H, 1);
     scaleEl.style.setProperty("--game-scale", s.toFixed(4));
