@@ -355,10 +355,6 @@ config = {
             border: 2px solid black;
             background: transparent;
             overflow: hidden;
-        }
-
-        .game-scale{
-            display: inline-block;
             transform: scale(0.8);
             transform-origin: top center;
         }
@@ -378,16 +374,15 @@ config = {
             By Daniel Rabi, Myles Obrigewitsch, and Shelby Cyr
         </h1>
 
-    <div class="game-scale">
-        <div class="game-wrap">
-            <div id="transfer" align="center">
-                <div class="emscripten" id="status">
-                    Downloading...
-                </div>
-                <div class="emscripten">
-                    <progress value="0" max="100" id="progress"></progress>
-                </div>
+    <div class="game-wrap">
+        <div id="transfer" align="center">
+            <div class="emscripten" id="status">
+                Downloading...
             </div>
+            <div class="emscripten">
+                <progress value="0" max="100" id="progress"></progress>
+            </div>
+        </div>
 
         <canvas class="emscripten" id="canvas"
             width="1px"
