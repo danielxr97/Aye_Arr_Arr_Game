@@ -304,7 +304,7 @@ config = {
             margin: 0;
             padding: 0;
             background-color:powderblue;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         .topright{
@@ -359,17 +359,19 @@ config = {
         }
         
         .game-wrap{
-            width: 800px;
-            height: 600px;
-            margin: 0;              /* important */
-            border: 2px solid black;
-            overflow: hidden;
+          position: relative;
+          width: var(--game-w, 800px);
+          height: var(--game-h, 600px);
+          margin: 0;
+          border: 2px solid black;
+          overflow: hidden;
+          background: transparent;
         }
         
         .game-scale{
-            transform: scale(var(--game-scale, 1));
-            transform-origin: top center;
+          display: inline-block; /* keep it simple */
         }
+
 
         
     </style>
@@ -534,32 +536,31 @@ frameborder="1"
     }
 
     (function () {
-  const BASE_W = 800;
-  const BASE_H = 600;
-
-  function setScale() {
-    const scaleEl = document.querySelector(".game-scale");
-    const outer = document.querySelector(".game-outer");
-    const header = document.querySelector(".header");
-    if (!scaleEl || !outer || !header) return;
-
-    const padding = 20;
-
-    // width available inside the outer container
-    const availW = outer.clientWidth - padding;
-
-    // height available after the header (titles)
-    const headerH = header ? header.getBoundingClientRect().height : 0;
-    const availH = window.innerHeight - headerH - padding;
-
-    const s = Math.min(availW / BASE_W, availH / BASE_H, 1);
-    scaleEl.style.setProperty("--game-scale", s.toFixed(4));
-  }
-
-  window.addEventListener("resize", setScale);
-  window.addEventListener("orientationchange", setScale);
-  setScale();
-})();
+      const BASE_W = 800;
+      const BASE_H = 600;
+    
+      function setScale() {
+        const wrap = document.querySelector(".game-wrap");
+        const outer = document.querySelector(".game-outer");
+        const header = document.querySelector(".header");
+        if (!wrap || !outer || !header) return;
+    
+        const padding = 20;
+    
+        const availW = outer.clientWidth - padding;
+        const headerH = header.getBoundingClientRect().height;
+        const availH = window.innerHeight - headerH - padding;
+    
+        const s = Math.min(availW / BASE_W, availH / BASE_H, 1);
+    
+        wrap.style.setProperty("--game-w", `${Math.floor(BASE_W * s)}px`);
+        wrap.style.setProperty("--game-h", `${Math.floor(BASE_H * s)}px`);
+      }
+    
+      window.addEventListener("resize", setScale);
+      window.addEventListener("orientationchange", setScale);
+      setScale();
+    })();
 
     </script>
 
