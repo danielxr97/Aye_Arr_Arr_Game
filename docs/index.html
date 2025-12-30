@@ -16,8 +16,8 @@ Loading pygame-ce.game.folder from pygame-ce.game.folder.apk
 
 
 # screen pixels (real, hardware)
-WIDTH=970  # 1280
-HEIGHT=730  # 720
+WIDTH=800  # 1280
+HEIGHT=600  # 720
 
 # reference/idealized screen pixels
 REFX = 1980
@@ -348,12 +348,16 @@ config = {
 
         .game-wrap{
             position: relative;
-            width: 970px;
-            height: 730px;
+            width: 800px;
+            height: 600px;
             margin: 14px auto 24px auto;
             border: 2px solid black;
             background: transparent;
             overflow: hidden;
+        }
+
+        .game-scale{
+            display: inline-block;
             transform: scale(0.8);
             transform-origin: top center;
         }
@@ -373,15 +377,16 @@ config = {
             By Daniel Rabi, Myles Obrigewitsch, and Shelby Cyr
         </h1>
 
-    <div class="game-wrap">
-        <div id="transfer" align="center">
-            <div class="emscripten" id="status">
-                Downloading...
+    <div class="game-scale">
+        <div class="game-wrap">
+            <div id="transfer" align="center">
+                <div class="emscripten" id="status">
+                    Downloading...
+                </div>
+                <div class="emscripten">
+                    <progress value="0" max="100" id="progress"></progress>
+                </div>
             </div>
-            <div class="emscripten">
-                <progress value="0" max="100" id="progress"></progress>
-            </div>
-        </div>
 
         <canvas class="emscripten" id="canvas"
             width="1px"
