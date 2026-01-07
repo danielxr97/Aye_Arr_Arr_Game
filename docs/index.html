@@ -383,10 +383,87 @@ config = {
             height: 100% !important;
             image-rendering: pixelated;
         }
+
+        .behind-the-scenes{
+            max-width: 980px;
+            margin: 18px auto 60px;
+            padding: 0 14px;
+            text-align: left;
+        }
+
+        .behind-the-scenes h2{
+            margin: 10px 0 6px;
+        }
+
+        .behind-the-scenes .subtitle{
+            margin: 0 0 14px;
+            opacity: 0.85;
+        }
+
+        .behind-the-scenes-grid{
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+
+        @media (min-width: 900px){
+            .behind-the-scenes-grid{
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card{
+            background: rgba(255, 255, 255, 0.35);
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        .card h3{
+            margin: 0 0 8px;
+        }
+
+        .math{
+            background: rgba(255, 255, 255, 0.45);
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            padding: 10px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        .math code{
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+            font-size: 0.95rem;
+        }
+
+        .small{
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        .behind-the-scenes-footer{
+            margin-top: 14px;
+        }
+
+        .behind-the-scenes-link{
+            display: inline-block;
+            padding: 10px 12px;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            text-decoration: none;
+            color: inherit;
+            background: rgba(255, 255, 255, 0.35);
+        }
         
     </style>
 
     <script src="https://pygame-web.github.io/archives/0.9//browserfs.min.js"></script>
+
+    <script>
+        window.MathJax = {tex: {inlineMath: [['\\(','\\)'], ['$', '$']] }};
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
 </head>
 
@@ -424,6 +501,11 @@ config = {
                 </div>
             </div>
         </div>
+        <section class="behind-the-scenes" id="behind-the-scenes">
+            <h2>
+                Behind The Scenes
+            </h2>
+        </section>
     </div>
 
     <div id=crt  class=bottomright >
