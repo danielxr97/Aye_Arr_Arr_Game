@@ -339,41 +339,42 @@ config = {
         }
 
         .page{
-          width: 100%;
-          margin: 0 auto;
-          padding-top: 10px;
-          text-align: center;
+            width: 100%;
+            margin: 0 auto;
+            padding-top: 10px;
+            text-align: center;
         }
 
         .header h1{
-          margin: 6px 0;
-          line-height: 1.1;
+            margin: 6px 0;
+            line-height: 1.1;
         }
         
         .game-outer{
-          --s: 1;
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          padding: 10px 0;
-          box-sizing: border-box;
-          height: calc(600px * var(--s));
+            --s: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            box-sizing: border-box;
+            height: calc(600px * var(--s));
         }
         
         .game-scale{
-          width: 800px;
-          height: 600px;
-          transform: scale(var(--s));
-          transform-origin: top center;
+            width: 800px;
+            height: 600px;
+            transform: scale(var(--s));
+            transform-origin: top center;
         }
         
         .game-wrap{
-          position: relative;
-          width: 800px;
-          height: 600px;
-          border: 2px solid black;
-          overflow: hidden;
-          background: transparent;
+            position: relative;
+            width: 800px;
+            height: 600px;
+            overflow: hidden;
+            background: transparent;
+            outline: 2px solid black;
+            outline-offset: 0;
         }
         
     </style>
@@ -476,8 +477,6 @@ frameborder="1"
     <script type="application/javascript">
 
     async function custom_onload(debug_hidden) {
-        // this is called before anything python is loaded
-        // make your js customization here
         console.log(__FILE__, "custom_onload")
 
         pyconsole.hidden = debug_hidden
@@ -538,29 +537,29 @@ frameborder="1"
     }
 
     (function () {
-      const BASE_W = 800;
-      const BASE_H = 600;
-    
-      function setScale() {
-        const outer = document.querySelector(".game-outer");
-        if (!outer) return;
-    
-        const padding = 24;
-    
-        const availW = outer.clientWidth - padding;
-        const top = outer.getBoundingClientRect().top;
-        const availH = window.innerHeight - top - padding;
-    
-        const s = Math.min(availW / BASE_W, availH / BASE_H, 1);
-        outer.style.setProperty("--s", s.toFixed(4));
-      }
-    
-      window.addEventListener("resize", setScale);
-      window.addEventListener("orientationchange", setScale);
-      window.addEventListener("load", () => {
-        setScale();
-        setTimeout(setScale, 50);
-      });
+        const BASE_W = 800;
+        const BASE_H = 600;
+        
+        function setScale() {
+            const outer = document.querySelector(".game-outer");
+            if (!outer) return;
+            
+            const padding = 24;
+            
+            const availW = outer.clientWidth - padding;
+            const top = outer.getBoundingClientRect().top;
+            const availH = window.innerHeight - top - padding;
+            const s = Math.min(availW / BASE_W, availH / BASE_H, 1);
+            outer.style.setProperty("--s", s.toFixed(4));
+            console.log("scale", s, "availW", availW, "availH", availH);
+        }
+        
+        window.addEventListener("resize", setScale);
+        window.addEventListener("orientationchange", setScale);
+        window.addEventListener("load", () => {
+            setScale();
+            setTimeout(setScale, 50);
+        });
     })();
 
     </script>
