@@ -351,20 +351,15 @@ config = {
         }
         
         .game-outer{
-            --s: 1;
             width: 100%;
             display: flex;
             justify-content: center;
             padding: 10px 0;
             box-sizing: border-box;
-            height: calc(600px * var(--s));
         }
         
         .game-scale{
-            width: 800px;
-            height: 600px;
-            transform: scale(var(--s));
-            transform-origin: top center;
+            display: block;
         }
         
         .game-wrap{
@@ -374,7 +369,6 @@ config = {
             overflow: hidden;
             background: transparent;
             outline: 2px solid black;
-            outline-offset: 0;
         }
         
     </style>
@@ -539,28 +533,39 @@ frameborder="1"
     (function () {
         const BASE_W = 800;
         const BASE_H = 600;
+        const AR = BASE_W / BASE_H; // 4/3
         
-        function setScale() {
+        function setSize() {
+            const wrap = document.querySelector(".game-wrap");
             const outer = document.querySelector(".game-outer");
-            if (!outer) return;
+            const header = document.querySelector(".header");
+            if (!wrap || !outer || !header) return;
             
             const padding = 24;
             
             const availW = outer.clientWidth - padding;
-            const top = outer.getBoundingClientRect().top;
-            const availH = window.innerHeight - top - padding;
-            const s = Math.min(availW / BASE_W, availH / BASE_H, 1);
-            outer.style.setProperty("--s", s.toFixed(4));
-            console.log("scale", s, "availW", availW, "availH", availH);
+            
+            const headerBottom = header.getBoundingClientRect().bottom;
+            const availH = window.innerHeight - headerBottom - padding;
+            
+            let w = Math.min(BASE_W, availW, availH * AR);
+            let h = w / AR;
+            
+            w = Math.max(320, w);
+            h = w / AR;
+            
+            wrap.style.width = `${Math.floor(w)}px`;
+            wrap.style.height = `${Math.floor(h)}px`;
         }
         
-        window.addEventListener("resize", setScale);
-        window.addEventListener("orientationchange", setScale);
+        window.addEventListener("resize", setSize);
+        window.addEventListener("orientationchange", setSize);
         window.addEventListener("load", () => {
-            setScale();
-            setTimeout(setScale, 50);
+            setSize();
+            setTimeout(setSize, 50);
         });
     })();
+
 
     </script>
 
