@@ -339,23 +339,32 @@ config = {
         }
 
         .page{
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-top: 20px;
-            text-align: center;
-            background: transparent;
+          width: 100%;
+          margin: 0 auto;
+          padding-top: 10px;
+          text-align: center;
         }
 
-        html, body{
-            height: 100%;
+        .header h1{
+          margin: 6px 0;
+          line-height: 1.1;
         }
         
         .game-outer{
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            padding: 14px 0 24px;
-            box-sizing: border-box;
+          --s: 1;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          padding: 10px 0;
+          box-sizing: border-box;
+          height: calc(600px * var(--s));
+        }
+        
+        .game-scale{
+          width: 800px;
+          height: 600px;
+          transform: scale(var(--s));
+          transform-origin: top center;
         }
         
         .game-wrap{
@@ -365,12 +374,6 @@ config = {
           border: 2px solid black;
           overflow: hidden;
           background: transparent;
-        }
-        
-        .game-scale{
-          display: inline-block;
-          transform: scale(var(--game-scale, 1));
-          transform-origin: top center;
         }
         
     </style>
@@ -539,26 +542,21 @@ frameborder="1"
       const BASE_H = 600;
     
       function setScale() {
-        const scaleEl = document.querySelector(".game-scale");
         const outer = document.querySelector(".game-outer");
-        if (!scaleEl || !outer) return;
+        if (!outer) return;
     
-        const padding = 20;
+        const padding = 24;
     
         const availW = outer.clientWidth - padding;
-    
-        // real vertical space left under the header/title
         const top = outer.getBoundingClientRect().top;
         const availH = window.innerHeight - top - padding;
     
-        const scale = Math.min(availW / BASE_W, availH / BASE_H, 1);
-        scaleEl.style.setProperty("--game-scale", scale.toFixed(4));
+        const s = Math.min(availW / BASE_W, availH / BASE_H, 1);
+        outer.style.setProperty("--s", s.toFixed(4));
       }
     
       window.addEventListener("resize", setScale);
       window.addEventListener("orientationchange", setScale);
-    
-      // IMPORTANT: run after layout/fonts settle
       window.addEventListener("load", () => {
         setScale();
         setTimeout(setScale, 50);
