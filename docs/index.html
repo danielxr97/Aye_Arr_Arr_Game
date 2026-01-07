@@ -354,12 +354,17 @@ config = {
             width: 100%;
             display: flex;
             justify-content: center;
-            padding: 10px 0;
+            align-items: flex-start;
+            padding: 10px 0 24px;
             box-sizing: border-box;
+            height: auto;
         }
         
         .game-scale{
-            display: block;
+            display: inline-block;
+            width: 800px;
+            height: 600px;
+            transform-origin: top center;
         }
         
         .game-wrap{
@@ -369,6 +374,14 @@ config = {
             overflow: hidden;
             background: transparent;
             outline: 2px solid black;
+        }
+
+        canvas#canvas.emscripten{
+            position: absolute;
+            inset: 0;
+            width: 100% !important;
+            height: 100% !important;
+            image-rendering: pixelated;
         }
         
     </style>
@@ -533,39 +546,34 @@ frameborder="1"
     (function () {
         const BASE_W = 800;
         const BASE_H = 600;
-        const AR = BASE_W / BASE_H; // 4/3
         
         function setSize() {
-            const wrap = document.querySelector(".game-wrap");
             const outer = document.querySelector(".game-outer");
+            const scale = document.querySelector(".game-scale");
             const header = document.querySelector(".header");
-            if (!wrap || !outer || !header) return;
+            if (!outer || !scale || !header) return;
             
             const padding = 24;
-            
             const availW = outer.clientWidth - padding;
-            
             const headerBottom = header.getBoundingClientRect().bottom;
             const availH = window.innerHeight - headerBottom - padding;
-            
-            let w = Math.min(BASE_W, availW, availH * AR);
-            let h = w / AR;
-            
-            w = Math.max(320, w);
-            h = w / AR;
-            
-            wrap.style.width = `${Math.floor(w)}px`;
-            wrap.style.height = `${Math.floor(h)}px`;
+            const s = Math.min(availW / BASE_W, availH / BASE_H, 1);
+
+            scale.style.transform = `scale(${s})`;
+
+            outer.style.height = `${Math.ceil(BASE_H * s)}px`;
         }
-        
-        window.addEventListener("resize", setSize);
-        window.addEventListener("orientationchange", setSize);
+
+        const run = () => requestAnimationFrame(setSize);
+
+        window.addEventListener("resize", run);
+        window.addEventListener("orientationchange", run);
         window.addEventListener("load", () => {
-            setSize();
-            setTimeout(setSize, 50);
+            run();
+            setTimeout(run, 50);
+            setTimeout(run, 250);
         });
     })();
-
 
     </script>
 
