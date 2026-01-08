@@ -538,6 +538,17 @@ config = {
                 <section class="card">
                     <h3>Levels of Difficulty</h3>
                         <h4>Easy Level - Bisection Method</h4>
+                            <p>
+                                The Bisection method is calculated by starting with an interval range that is between the numbers 0 and 1, such as \([0, 0.5]\), for example. From there, we will compute the midpoint or the average number for those two values, which will look like this:<br>
+                                <br>
+                                \( \text{midpoint} = \frac{0 + 0.5}{2} \)<br>
+                                <br>
+                                Once we obtain the midpoint, we use it as our r value for the NPV calculation, so we perform \(NPV(0.25)\).<br>
+                                - If it comes out that the NPV is positive, we know that our midpoint is too low and we will set it as our lower limit: \([0.25,0.5]\)<br>
+                                - If it comes out that the NPV is negative, we know that our midpoint is too high, and we will set it as our higher limit: \([0,0.25]\)<br>
+                                <br>
+                                The goal is to achieve an NPV of zero, as the IRR sets our NPV to zero; this is how we will determine the IRR.
+                            </p>
                         <h4>Medium Level - Newton-Raphson Method</h4>
                         <h4>Hard Level - Machine Learning</h4>
                             <p>
