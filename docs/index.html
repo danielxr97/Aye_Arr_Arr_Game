@@ -406,7 +406,7 @@ config = {
             opacity: 0.85;
         }
 
-        .behind-the-scenes-grid{
+        .behind-the-scenes-grid{ /* This adjusts the layout when individuals use mobile by stacking vertically*/
             display: grid;
             grid-template-columns: 1fr;
             gap: 14px;
@@ -440,7 +440,9 @@ config = {
         }
 
         .card h5{
-            margin: 0 0 8px;
+            margin-top: 6px;
+            margin-left: 20px;
+            margin-bottom: 8px;
             text-align: left;
             font-weight: bold;
             font-size: 1.3rem;
@@ -527,25 +529,27 @@ config = {
         
         <section class="behind-the-scenes" id="behind-the-scenes">
             <h2>Behind The Scenes</h2>
-            
-            <section class="card">
-                <h3>The Physics</h3>
-                    <h4>Player's Shots</h4>
-                    <h4>Pirate's Shots</h4>
-            </section>
-
-            <section class="card">
-                <h3>Levels of Difficulty</h3>
-                    <h4>Easy: Bisection Method</h4>
-                    <h4>Medium: Newton-Raphson Method</h4>
-                    <h4>Hard: Machine Learning</h4>
-                        <p>
-                            At the high level of difficulty, we calculated two machine learning approaches, but only utilized Adam. Here are the two approaches:
-                        </p>
-                        <h5>AdaGrad</h5>
-                        <h5>Adam Optimizer</h5>
-            </section>
-            
+            <div class="behind-the-scenes-grid">
+                
+                <section class="card">
+                    <h3>The Physics</h3>
+                        <h4>Player's Shots</h4>
+                        <h4>Pirate's Shots</h4>
+                </section>
+    
+                <section class="card">
+                    <h3>Levels of Difficulty</h3>
+                        <h4>Easy: Bisection Method</h4>
+                        <h4>Medium: Newton-Raphson Method</h4>
+                        <h4>Hard: Machine Learning</h4>
+                            <p>
+                                At the high level of difficulty, we calculated two machine learning approaches, but only utilized Adam. Here are the two approaches:
+                            </p>
+                            <h5>AdaGrad</h5>
+                            <h5>Adam Optimizer</h5>
+                </section>
+           
+            </div>
         </section>
     </div>
 
