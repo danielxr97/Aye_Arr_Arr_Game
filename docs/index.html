@@ -491,7 +491,7 @@ config = {
     <script src="https://pygame-web.github.io/archives/0.9//browserfs.min.js"></script>
 
     <script>
-        window.MathJax = {tex: {inlineMath: [['\\(','\\)'], ['$', '$']] }}; /* Here we're making math look nice on the website */
+        window.MathJax = {tex: {inlineMath: [['\\(','\\)'], ['$', '$']] }}; /* Here we're making math look nice on the website. For LaTeX */
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"> /* This is the source for making the math look nice on the website */ </script>
 
@@ -587,8 +587,23 @@ config = {
                 
                 <section class="card">
                     <h3>The Physics</h3>
-                        <h4>Player's Shots</h4>
-                        <h4>Pirate's Shots</h4>
+                        <h4>The Shooting Arc</h4>
+                            <p>
+                                The shot lands based on the player’s selection of IRR, angle, and power.<br>
+                                To account for the power (velocity) and angle, we will use the physics equation:<br>
+                                /[ \text{D} = \frac{v^2}{g}\sin(2\theta) /]<br>
+                                <br>
+                                Where<br>
+                            </p>
+
+                            <ul class="text-list">
+                                D = Distance
+                                v = Power (velocity)
+                                g = Gravity constant, which we know to be 9.81
+                                \(\theta)\) = Launch angle
+                            </ul>
+                    
+                        <h4>Finding Theta (\(\theta)\))</h4>
                 </section>
 
                 <section class="card">
