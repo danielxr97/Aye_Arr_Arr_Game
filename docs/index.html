@@ -590,9 +590,41 @@ config = {
                         <h4>The Shooting Arc</h4>
                             <p>
                                 Both the Cannon and the Blunderbuss use the same projectile motion physics to determine the path of a shot.
-                                Given a launch angle \theta and a shot speed v (the power), we plot the trajectory using the following equations:<br>
-                                \[ \text{x(t)} = v\cos(\theta)\,t \]<br>
-                                \[ \text{y(t)} = v\sin(\theta)\,t - \tfrac{1}{2}gt^2 \]<br> <!-- The tfrac makes it so that the height for 1/2 would align with the height of the rest of the text -->
+                                Given a launch angle \( \theta \) and a shot speed v (the power), we plot the trajectory of each bullet.<br>
+                                <br>
+                                Assumptions
+                            </p>
+
+                            <ul class="text-list">
+                                <li>No air resistance - vacuum.</li>
+                                <li>No spin.</li>
+                                <li>No bullet size. We treat the bullet as a single point.</li>
+                            </ul>
+
+                            <p>
+                                Before we dive into the calculations, we need to make sure we understand the basics of physics.<br>
+                                According to Newton's 2nd Law:<br>
+                                \[ \vec{F} = m\vec{a} \]<br>
+                                Since we are assuming we are in a vacuum:<br>
+                                \[ m\vec{g} = m\vec{a} \]<br>
+                                Therefore:<br>
+                                \[ \vec{g} = \vec{a} \]<br>
+                                That means that the only force that acts down on the bullet is gravity's acceleration, so we do not need to assign masses to each bullet.<br>
+                                <br>
+                                Another important point to note is that an object experiences acceleration only when a force is acting upon it.<br>
+                                <br>
+                                After understanding the basics, we can start solving for the horizontal and vertical movement, x and y, of the bullet.<br>
+                                Let us start with the x-axis:<br>
+                                Since velocity is the derivative of position<br>
+                                \[ \vec{v_x} = \frac{dx}{dt} \]<br>
+                                Since \vec{v_x} is a constant:<br>
+                                \[ \frac{dx}{dt} = v\cos{\theta} \]<br>
+                                Then, we integrate with respect to t:<br>
+                                \[ \int dx = \int v\cos{\theta},dt \]
+
+                                
+                                \( \text{x(t)} = v\cos(\theta)\,t \)
+                                \( \text{y(t)} = v\sin(\theta)\,t - \tfrac{1}{2}gt^2 \) <!-- The tfrac makes it so that the height for 1/2 would align with the height of the rest of the text -->
                                 <br>
                                 Where
                             </p>
@@ -600,7 +632,7 @@ config = {
                             <ul class="text-list">
                                 <li>D = Distance</li>
                                 <li>v = Power (velocity)</li>
-                                <li>g = Gravity constant, which we know to be 9.81</li>
+                                <li>g = 9.81 (gravity constant)</li>
                                 <li>\(\theta\) = Launch angle</li>
                             </ul>
                     
