@@ -702,12 +702,33 @@ config = {
                                 \[ t = \frac{dx}{v\cos{\theta}} \]<br>
                                 <br>
                                 Now that we know t, let us use it to help us find \( \theta \)<br>
-                                \[ y_1 - y_0 = v\sin{\theta}\,t - \tfrac{1}{2}gt^2 \]<br>
+                                \[ y_1 - y_0 = -v\sin{\theta}\,t + \tfrac{1}{2}\,gt^2 \]<br>
                                 Let<br>
                                 \[ dy = y_1 - y_0 \]<br>
-                                \[ dy = v\sin{\theta}\,t - \tfrac{1}{2}gt^2 \]<br>
+                                \[ dy = -v\sin{\theta}\,t + \tfrac{1}{2}\,gt^2 \]<br>
                                 Substituting the value of t<br>
-                                \[ dy = v\sin{\theta}\frac{dx}{v\cos{\theta}} - \tfrac{1}{2}g(\frac{dx}{v\cos{\theta}})^2 \]<br>
+                                \[ dy = -v\sin{\theta}\frac{dx}{v\cos{\theta}} + \tfrac{1}{2}g(\frac{dx}{v\cos^{2}(\theta) \]<br>
+                                \[ dy = -\sin{\theta}\frac{dx}{\cos{\theta}} + \tfrac{1}{2}\,g(\frac{dx}{v\cos^{2}(\theta) \]<br>
+                                \[ dy = -dx\frac{\sin{\theta}}{\cos{\theta}} + \tfrac{1}{2}\,g\frac{dx^2}{v^2\cos^{2}(\theta) \]<br>
+                                Since:<br>
+                                \[ \frac{\sin{\theta}}{\cos{\theta}} = \tan{\theta} ; \frac{1}{\cos^{2}(\theta)} = 1 + \tan^{2}(\theta) \]<br>
+                                Then:<br>
+                                \[ dy = -dx\cdot \tan{\theta} + \frac{g\cdot dx^2}{2v^2}\,(1 + \tan^{2}(\theta)) \]<br>
+                                Let<br>
+                                \[ T = \tan{\theta} ; K = \frac{g\cdot dx^2}{2v^2} \]<br>
+                                Keep in mind that K is just a constant<br>
+                                \[ dy = -dx\cdot T + K(1 + T^2) \]<br>
+                                \[ dy = -dx\cdot T + K + T^2\cdot K \]<br>
+                                \[ dy = K\cdot T^2 - dx\cdot T + K \]<br>
+                                Let \( dy = 0 \) and solve the qudratix equation<br>
+                                \[ K\cdot T^2 - dx\cdot T + K = 0 \]<br>
+                                Using the quadratic formula:<br>
+                                \[ ax^2 + bx + c = 0 \]<br>
+                                \[ x = \frac{-b \pm\sqrt{b^2 - 4ac}}{2a} \]<br>
+                                Then:<br>
+                                \[ T = \frac{-(-dx) \pm\sqrt{(-dx)^2 - 4\cdot K\cdot (K - dy)}}{2K} \]<br>
+                                \[ \boldsymbol{\theta = \tan^{-1}(T) \]<br>
+                                By computing this, we will receive two solutions for \( \theta \), but we will only use the smallest \( \theta \).
                             </p>
                 </section>
 
