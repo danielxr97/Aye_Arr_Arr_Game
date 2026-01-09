@@ -607,12 +607,12 @@ config = {
                             </p>
 
                             <ul class="text-list">
+                                <li>\( \vec{F} \) = Force</li>
                                 <li>\( \vec{a} \) = Acceleration</li>
                                 <li>\( \vec{v} \) = Velocity (Power)</li>
                                 <li>\( \vec{g} \) = Gravity (9.81)</li>
                                 <li>\( \theta \) = Launch angle</li>
                                 <li>m = Mass</li>
-                                <li>\( \vec{F} \) = Force</li>
                             </ul>
 
                             <p>
@@ -634,25 +634,25 @@ config = {
                                 Since \( \vec{v_x} \) is a constant:<br>
                                 \[ \frac{dx}{dt} = v\cos{\theta} \]<br>
                                 Then, we integrate with respect to t:<br>
-                                \[ \int dx = \int v\cos{\theta}dt \]<br>
+                                \[ \int dx = \int v\cos{\theta}\, dt \]<br>
                                 Since<br>
                                 \[ \int dx = x \]<br>
                                 And<br>
-                                \[ \int v\cos{\theta},dt = v\cos{\theta},t \]<br>
+                                \[ \int v\cos{\theta}\,dt = v\cos{\theta}\,t \]<br>
                                 Therefore, the equation for finding the location of the bullet on the x-axis is:<br>
-                                \( \boldsymbol{x(t) = v\cos(\theta)\,t} \)<br>
+                                \[ \boldsymbol{x(t) = v\cos(\theta)\,t} \]<br>
                                 <br>
                                 <br>
                                 Now, let us take a look at the y-axis:<br>
-                                Now that we have the force of gravity acting upon the bullet:<br>
+                                Now that we have the force of gravity acting upon the bullet<br>
                                 \[ \vec{v_y} = -g \]<br>
                                 Since<br>
                                 \[ v = \frac{dy}{dt} \]<br>
                                 \[ \vec{a} = \frac{d^2y}{dt^2} \]<br>
                                 So<br>
                                 \[ \vec{a_y} = \frac{dv_y}{dt} \]<br>
-                                \[ \vec{-g} = \frac{dv_y}{dt} \]<br>
-                                \[ dv_y = -gdt \]<br>
+                                \[ -\vec{g} = \frac{dv_y}{dt} \]<br>
+                                \[ dv_y = -g\cdot dt \]<br>
                                 From here, we integrate acceleration with respect to t<br>
                                 Since<br>
                                 \[ \int dv_y = v_y \]<br>
@@ -669,8 +669,8 @@ config = {
                                 Now, let us integrate velocity<br>
                                 \[ v_y = \frac{dy}{dt} \]<br>
                                 \[ \frac{dy}{dt} = -gt + v\sin(\theta) \]<br>
-                                \[ \int dy = \int -gtdt + \int v\sin(\theta)dt \]<br>
-                                \[ y(t) = v\sin{\theta}t - \tfrac{1}{2}gt^2 + C \]<br>
+                                \[ \int dy = \int -gt\cdot dt + \int v\sin(\theta)dt \]<br>
+                                \[ y(t) = v\sin{\theta}\,t - \tfrac{1}{2}gt^2 + C \]<br>
                                 Again, at t = 0, C = 0:<br>
                                 \( \boldsymbol{y(t) = v\sin(\theta)\,t - \tfrac{1}{2}gt^2} \)<br> <!-- The tfrac makes it so that the height for 1/2 would align with the height of the rest of the text -->
                                 <br>
