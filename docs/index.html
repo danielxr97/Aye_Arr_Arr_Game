@@ -592,7 +592,7 @@ config = {
                                 Both the Cannon and the Blunderbuss use the same projectile motion physics to determine the path of a shot.
                                 Given a launch angle \( \theta \) and a shot speed v (the power), we plot the trajectory of each bullet.<br>
                                 <br>
-                                Assumptions
+                                Assumptions:
                             </p>
 
                             <ul class="text-list">
@@ -676,6 +676,39 @@ config = {
                             </p>
                     
                         <h4>Finding Theta (\( \theta \))</h4>
+                            <p>
+                                As the pirate is not a real player, but yet has to make a shot, we need to calculate the angle that he needs to shoot at in order for him to hit the r-value that he "selected".<br>
+                                <br>
+                                Variables:
+                            </p>
+
+                            <ul class="text-list">
+                                <li>\( x_0, y_0 = \text{The starting position of the pirate's weapon} \)</li>
+                                <li>\( x_1, y_1 = \text{The position of the pirate's shot on the ground - the target} \)</li>
+                                <li>t = Here, it is the time it takes to hit the target and not the time step</li>
+                            </ul>
+
+                            <p>
+                                Because the pirate is shooting from left to right:<br>
+                                \( x_1 = x_0 + v\cos{\theta}\,t \)<br>
+                                \( y_1 = y_0 - (v\sin{\theta}\,t - \tfrac{1}{2}gt^2) \)<br>
+                                We are subtracting \( y_0 \) from the rest of the equation because, in the game, to go up, we need to subtract from the total screen size.<br>
+                                <br>
+                                Before we can find Theta (\( \theta \)), we need to find t, so let us start by solving for t:<br>
+                                \[ x_1 - x_0 = v\cos{\theta}\,t \]<br>
+                                Let<br>
+                                \[ dx = x_1 - x_0 \]<br>
+                                \[ dx = v\cos{\theta}\,t \]<br>
+                                \[ t = \frac{dx}{v\cos{\theta}} \]<br>
+                                <br>
+                                Now that we know t, let us use it to help us find \( \theta \)<br>
+                                \[ y_1 - y_0 = v\sin{\theta}\,t - \tfrac{1}{2}gt^2 \]<br>
+                                Let<br>
+                                \[ dy = y_1 - y_0 \]<br>
+                                \[ dy = v\sin{\theta}\,t - \tfrac{1}{2}gt^2 \]<br>
+                                Substituting the value of t<br>
+                                \[ dy = v\sin{\theta}\frac{dx}{v\cos{\theta}} - \tfrac{1}{2}g(\frac{dx}{v\cos{\theta}})^2 \]<br>
+                            </p>
                 </section>
 
                 <section class="card">
