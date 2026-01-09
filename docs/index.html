@@ -574,9 +574,12 @@ config = {
 
                         <p>
                             Since the NPV equation looks like this:<br>
-                            \( \text{NPV} = \frac{\text{Booty}}{r}\left(1 - (1 + r)^{-t}\right) - \text{Blood} \)<br>
+                            \[ \text{NPV} = \frac{\text{Booty}}{r}\left(1 - (1 + r)^{-t}\right) - \text{Blood} \]<br> <!-- The square brackets will center-align the text and the round brackets will keep it like it's a regular text -->
                             <br>
                             Then, we will solve for Blood:<br>
+                            \[ \text{Blood} = \frac{\text{Booty}}{r}\left(1 - (1 + r)^{-t}\right) - \text{NPV} \]<br>
+                            \[ \text{Blood} = \frac{\text{Booty}}{r}\left(1 - (1 + r)^{-t}\right) - 0 \]<br>
+                            \[ \text{Blood} = \frac{\text{Booty}}{r}\left(1 - (1 + r)^{-t}\right) \]<br>
                         </p>
                 </section>
                 
