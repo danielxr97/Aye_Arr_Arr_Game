@@ -529,18 +529,18 @@ config = {
                     <h3>The NPV Calculation</h3>
                         <p>
                             First, because this is a pirates game, we used pirates' lingo for the NPV's variables so that it would look like this:<br>
-                                - Cash Flows (CFs) = Booty<br>
-                                - Initial cost of the project = Blood<br>
-                                - n = Plunders<br>
+                            - Cash Flows (CFs) = Booty<br>
+                            - Initial cost of the project = Blood<br>
+                            - n = Plunders<br>
                             Plunders corresponds to the number of years, which is also the number of turns the player has.<br>
                             <br>
                             In our NPV calculation, at the start of every game:<br>
-                                - We select the Booty value at random from 1 to 10, which we maintain throughout the years.<br>
-                                - We select at random a value from 0.2 to 0.7 for the r-value location of the pirate and player. We used 0.2 and 0.7 due to the weapons' locations and the ease of the game.<br>
-                                - We compute the value of Blood that will make the NPV equal to zero using either the pirate's r location for the player or the player's r location for the pirate because we need their locations' r value to be the IRR for the NPV equation. Once we have the Blood, we can solve the NPV equation.<br>
+                            - We select the Booty value at random from 1 to 10, which we maintain throughout the years.<br>
+                            - We select at random a value from 0.2 to 0.7 for the r-value location of the pirate and player. We used 0.2 and 0.7 due to the weapons' locations and the ease of the game.<br>
+                            - We compute the value of Blood that will make the NPV equal to zero using either the pirate's r location for the player or the player's r location for the pirate because we need their locations' r value to be the IRR for the NPV equation. Once we have the Blood, we can solve the NPV equation.<br>
                             <br>
                             Since the NPV equation looks like this:<br>
-                            \( \text{NPV} = \frac{\text{Booty}{r}\left(1 - (1 + r)^{-t}\right) - \text{Blood} \)<br>
+                            \[\( \text{NPV} = \frac{\text{Booty}{r}\left(1 - (1 + r)^{-t}\right) - \text{Blood} \)\]<br>
                             <br>
                             Then, we will solve for Blood:<br>
                         </p>
