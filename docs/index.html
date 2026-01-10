@@ -545,7 +545,7 @@ config = {
                             Using Git prompts enabled us to code like professionals in a collaborative effort, without needing to be physically present with our teammates, but also kept our work organized. 
                             Furthermore, we added the in-line comments for each new file and folder that we have uploaded to facilitate thoughtful follow-up.
                         </p>
-                </section>section>
+                </section>
                     
                 <section class="card">
                     <h3>The NPV Calculation</h3>
@@ -585,7 +585,7 @@ config = {
 
                         <p>
                             Since the NPV equation looks like this:<br>
-                            \[ \text{NPV} = \frac{\text{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \text{Initial Cost} \]<br> <!-- The square brackets will center-align the text and the round brackets will keep it like it's a regular text -->
+                            \[ boldsymbol{ \text{NPV} = \frac{\text{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \text{Initial Cost} } \]<br> <!-- The square brackets will center-align the text and the round brackets will keep it like it's a regular text -->
                             <br>
                             Then, we will solve for Blood:<br>
                             \[ \text{Initial Cost} = \frac{\text{CF}}{r}\left(1 - (1 + r)^{-t}\right) - \text{NPV} \]<br>
@@ -772,8 +772,8 @@ config = {
                             \]<br>
                             \[ R(\theta) = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} \]
                             Then that means:<br>
-                            \[ \boldsymbol{ x' = x\cdot \cos{\theta} + y\cdot (-\sin{\theta}) = x\cdot \cos{\theta} - \cdot \sin{\theta} } \]<br>
-                            \[ \boldsymbol{ y' = x\cdot \sin{\theta} + y\cdot \cos{\theta} } \]<br>
+                            \[ \boldsymbol{ x' = x\cdot \cos{\theta} + y\cdot (-\sin{\theta}) = x\cos{\theta} - y\sin{\theta} } \]<br>
+                            \[ \boldsymbol{ y' = x\sin{\theta} + y\cos{\theta} } \]<br>
                         </p>
                 </section>
     
@@ -793,6 +793,16 @@ config = {
                                 The goal is to achieve an NPV of zero, as the IRR sets our NPV to zero; this is how we will determine the IRR.
                             </p>
                         <h4>Medium Level - Newton-Raphson Method</h4>
+                            <p>
+                                The Newton-Raphson method is calculated by starting with a random r value, which we made to be between 0.2 and 0.7. 
+                                From there, we will need to calculate the derivative of the NPV and determine the slope at the r-value that the player selected. 
+                                Once we find the slope, we can also calculate the NPV value at the chosen r-value.<br>
+                                <br>
+                                The first step is to calculate the derivative of the NPV function with respect to r<br>
+                                \[ \text{NPV} = \frac{\text{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \text{Initial Cost} \]<br>
+                                \[ \frac{dNPV}{dr}NPV = \frac{CFs}{r}\left(1 - (1 + r)^{-t}\right) - Initial Cost \]
+                            </p>
+                    
                         <h4>Hard Level - Machine Learning</h4>
                             <p>
                                 At the high level of difficulty, we calculated two machine learning methods, but only utilized the Adam method.<br>
