@@ -816,9 +816,37 @@ config = {
                                 \[ \frac{d}{dr}  \text{NPV} = \frac{\text{CFs}}{r} \cdot t \cdot (1 + r)^{-(t + 1)} - \frac{\text{CFs}}{r^{2}} \cdot (1 - (1 + r)^{-t}) \]<br>
                                 Therefore<br>
                                 \[ \boldsymbol{ \text{NPV'} = \frac{\text{CFs}}{r} \cdot t \cdot (1 + r)^{-(t + 1)} - \frac{\text{CFs}}{r^{2}} \cdot (1 - (1 + r)^{-t}) } \]<br>
-                                Or, since the numerical derivative has a higher accuracy, we can calculate NPV' this way:<br>
-                                By definition:<br>
-                                \[ f'(r) = \frac{(f(x + h) - f(x - h))}{2h} \]<br>
+                                Or, since the numerical derivative has a higher accuracy, we can calculate NPV' this way<br>
+                                By definition<br>
+                                \[ f'(r) = \frac{(f(r + h) - f(r - h))}{2h} \]<br>
+                                Where<br>
+                                h = a very small step size, which we will set to be \( 1 \cdot 10^{-5} \)<br>
+                                <br>
+                                We will make new variables for forward and backward \( r \) and limit them to our domain to avoid division by zero:
+                            </p>
+
+                            <ul class="text-list">
+                                <li>\( r_forward = \text{min}(1.0, r + h) \)</li>
+                                <li>\( r_backward = \text{max}(1 \cdot 10^{-8}, r - h) \)</li>
+                            </ul>
+
+                            <p>
+                                However, when \( r \) is near the boundaries, dividing by \( 2h \) may not be accurate because \( 2h \) is derived from<br>
+                                \[ (r + h) - (r - h) \]<br>
+                                \[ r + h -r + h \]<br>
+                                \[ 2h \]<br>
+                                When \( r \) is near the boundaries<br>
+                                \[ r_forward = 1.0 \]<br>
+                                \[ r_backward = 0.999989 \]<br>
+                                So<br>
+                                \[ r_forward - r_backward \]<br>
+                                \[ 1.0 - 0.999989 = 1.1 \cdot 10^{-5} \]<br>
+                                Which is not \( 2h \), so we revert to<br>
+                                \[ (r + h) - (r - h) \]<br>
+                                Which is<br>
+                                \[ r_forward - r_backward \]<br>
+                                Therefore<br>
+                                \[ \boxed{ \boldsymbol{ f'(r) = \frac{f(r_forward) - f(r_backward)}{r_forward - r_backward} } } \]
                             </p>
                     
                         <h4>Hard Level - Machine Learning</h4>
