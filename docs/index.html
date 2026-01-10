@@ -850,9 +850,9 @@ config = {
                                 Now that we know how to find \( NPV' \), we can proceed forward and use the linear approximation equation to approximate the function of the IRR, allowing us to find its value.<br>
                                 <br>
                                 The linear approximation equation is<br>
-                                \[ y = \text{NPV}(r) + \text{NPV’}(r) * (x - r) \]<br>
+                                \[ y = \text{NPV}(r) + \text{NPV’}(r) \cdot (x - r) \]<br>
                                 Then, we let \( y = 0 \) so we can isolate for x, which is the IRR value we are approximating.<br>
-                                \[ 0 = \text{NPV}(r) + \text{NPV’}(r) * (x - r) \]<br>
+                                \[ 0 = \text{NPV}(r) + \text{NPV’}(r) \cdot (x - r) \]<br>
                                 \[ x = r - \frac{\text{NPV}(r)}{\text{NPV'}(r)} \]<br>
                                 The result for x, as mentioned above, is the approximation for IRR that the Pirate will use during its turn.<br>
                                 <br>
