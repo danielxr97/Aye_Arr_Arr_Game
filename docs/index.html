@@ -815,7 +815,7 @@ config = {
                                 \[ \frac{d}{dr}  \text{NPV} = (1 - (1 + r)^{-t}) \cdot \text{CFs} \cdot (-r)^{-2} + \text{CFs} \cdot r^{-1} \cdot t \cdot (1 + r)^{-(t + 1)} - 0 \]<br>
                                 \[ \frac{d}{dr}  \text{NPV} = \frac{\text{CFs}}{r} \cdot t \cdot (1 + r)^{-(t + 1)} - \frac{\text{CFs}}{r^{2}} \cdot (1 - (1 + r)^{-t}) \]<br>
                                 Therefore<br>
-                                \[ \boldsymbol{ \text{NPV'} = \frac{\text{CFs}}{r} \cdot t \cdot (1 + r)^{-(t + 1)} - \frac{\text{CFs}}{r^{2}} \cdot (1 - (1 + r)^{-t}) } \]<br>
+                                \[ \boxed{ \boldsymbol{ \text{NPV'} = \frac{\text{CFs}}{r} \cdot t \cdot (1 + r)^{-(t + 1)} - \frac{\text{CFs}}{r^{2}} \cdot (1 - (1 + r)^{-t}) } } \]<br>
                                 Or, since the numerical derivative has a higher accuracy, we can calculate NPV' this way<br>
                                 By definition<br>
                                 \[ f'(r) = \frac{(f(r + h) - f(r - h))}{2h} \]<br>
@@ -846,7 +846,18 @@ config = {
                                 Which is<br>
                                 \[ r_forward - r_backward \]<br>
                                 Therefore<br>
-                                \[ \boxed{ \boldsymbol{ f'(r) = \frac{f(r_forward) - f(r_backward)}{r_forward - r_backward} } } \]
+                                \[ \boxed{ \boldsymbol{ f'(r) = \frac{f(r_forward) - f(r_backward)}{r_forward - r_backward} } } \]<br>
+                                Now that we know how to find \( NPV' \), we can proceed forward and use the linear approximation equation to approximate the function of the IRR, allowing us to find its value.<br>
+                                <br>
+                                The linear approximation equation is<br>
+                                \[ y = \text{NPV}(r) + \text{NPV’}(r) * (x - r) \]<br>
+                                Then, we let \( y = 0 \) so we can isolate for x, which is the IRR value we are approximating.<br>
+                                \[ 0 = \text{NPV}(r) + \text{NPV’}(r) * (x - r) \]<br>
+                                \[ x = r - \frac{\text{NPV}(r)}{\text{NPV'}(r)} \]<br>
+                                The result for x, as mentioned above, is the approximation for IRR that the Pirate will use during its turn.<br>
+                                <br>
+                                However, we want to control how aggressively the pirate guesses the r-value of the player. Therefore, we will use alpha, \( \alpha \), to do that.<br>
+                                \[ \boxed{ \boldsymbol{ x = r - \alpha \cdot \frac{\text{NPV}(r)}{\text{NPV'}(r)} } } \]<br>
                             </p>
                     
                         <h4>Hard Level - Machine Learning</h4>
