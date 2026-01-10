@@ -737,12 +737,12 @@ config = {
                         <p>
                             When we take an object's x and y coordinates, it outputs its position relative to the center of the object. However, because we want the bullet and the arc to exist from the tip of the barrel, we have to find the tip of the barrel at every angle.
                             To find the tip of the barrel coordinates at every level, we needed to rotate the axis.<br>
+                            <br>
                             Our first step was to find the coordinates when the angle was zero.<br>
                             The next step is to understand that every \( (x , y) \) coordinate is equal to \( x(1 , 0) + y(0 , 1) \), so:<br>
                             \[ (x , y) = x(1 , 0) + y(0 , 1) \]<br>
                             Let<br>
-                            \[ i = (1 , 0) \]<br>
-                            \[ j = (0 , 1) \]<br>
+                            \[ i = (1 , 0) \] \qquad ; \qquad \[ j = (0 , 1) \]<br>
                             But because we are shooting from right to left, we will apply a vertical reflection on the x-axis:<br>
                             \[ i = (-1 , 0) \]<br>
                             Then, we will use i' and j' to represent the unit vectors. Where j' is perpendicular to i'. Therefore, j' is the derivative of i' with respect to \( \theta \).<br>
@@ -754,11 +754,11 @@ config = {
                             \[ j' = (-\sin{\theta} , \cos{\theta}) \]<br>
                             So the 2D matrix is:<br>
                             \[
-                            \mathbf{i}' = \begin{pmatrix} \cos\theta \\ \sin\theta \end{pmatrix},
-                            \qquad
+                            \mathbf{i}' = \begin{pmatrix} \cos\theta \\ \sin\theta \end{pmatrix}
+                            \qquad , \qquad
                             \mathbf{j}' = \begin{pmatrix} -\sin\theta \\ \cos\theta \end{pmatrix}
                             \]<br>
-                            \[ \boxed{ R(\theta) = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} } \]
+                            \[ R(\theta) = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} \]
                             Then that means:<br>
                             \[ \boldsymbol{ x' = x\cdot \cos{\theta} + y\cdot (-\sin{\theta}) = x\cdot \cos{\theta} - \cdot \sin{\theta} } \]<br>
                             \[ \boldsymbol{ y' = x\cdot \sin{\theta} + y\cdot \cos{\theta} } \]<br>
