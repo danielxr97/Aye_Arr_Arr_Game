@@ -585,7 +585,7 @@ config = {
 
                         <p>
                             Since the NPV equation looks like this:<br>
-                            \[ boldsymbol{ \text{NPV} = \frac{\text{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \text{Initial Cost} } \]<br> <!-- The square brackets will center-align the text and the round brackets will keep it like it's a regular text -->
+                            \[ \boldsymbol{ \text{NPV} = \frac{\text{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \text{Initial Cost} } \]<br> <!-- The square brackets will center-align the text and the round brackets will keep it like it's a regular text -->
                             <br>
                             Then, we will solve for Blood:<br>
                             \[ \text{Initial Cost} = \frac{\text{CF}}{r}\left(1 - (1 + r)^{-t}\right) - \text{NPV} \]<br>
@@ -800,7 +800,7 @@ config = {
                                 <br>
                                 The first step is to calculate the derivative of the NPV function with respect to r<br>
                                 \[ \text{NPV} = \frac{\text{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \text{Initial Cost} \]<br>
-                                \[ \frac{d\text{NPV}}{dr} \text{NPV} = \frac{\text{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \text{Initial Cost} \]<br>
+                                \[ \frac{d}{dr} \text{NPV} = \frac{\text{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \text{Initial Cost} \]<br>
                                 Let<br>
                                 \[ f(r) = 1 - (1 + r)^{-t} \]<br>
                                 Since<br>
@@ -811,9 +811,9 @@ config = {
                                 Also, since<br>
                                 \[ \frac{d}{dr} f(r) \cdot h(r) = g(r) \cdot f'(r) + f(r) \cdot g'(r) \]<br>
                                 Then<br>
-                                \[ \frac{d\text{NPV}}{dr}  \text{NPV} = \text{CFs} \cdot r^{-1} \cdot (1 - (1 + r)^{-t}) - \text{Initial Cost} \]<br>
-                                \[ \frac{d\text{NPV}}{dr}  \text{NPV} = (1 - (1 + r)^{-t}) \cdot \text{CFs} \cdot (-r)^{-2} + \text{CFs} \cdot r^{-1} \cdot t \cdot (1 + r)^{-(t + r)} - 0 \]<br>
-                                \[ \frac{d\text{NPV}}{dr}  \text{NPV} = \frac{\text{CFs}}{r} \cdot t \cdot (1 + r)^{-(t + r)} - \frac{\text{CFs}{r^{2}} \cdot (1 - (1 + r)^{-t}) \]<br>
+                                \[ \frac{d}{dr}  \text{NPV} = \text{CFs} \cdot r^{-1} \cdot (1 - (1 + r)^{-t}) - \text{Initial Cost} \]<br>
+                                \[ \frac{d}{dr}  \text{NPV} = (1 - (1 + r)^{-t}) \cdot \text{CFs} \cdot (-r)^{-2} + \text{CFs} \cdot r^{-1} \cdot t \cdot (1 + r)^{-(t + 1)} - 0 \]<br>
+                                \[ \frac{d}{dr}  \text{NPV} = \frac{\text{CFs}}{r} \cdot t \cdot (1 + r)^{-(t + 1)} - \frac{\text{CFs}}{r^{2}} \cdot (1 - (1 + r)^{-t}) \]<br>
                                 Therefore<br>
                             </p>
                     
