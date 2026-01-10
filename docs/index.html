@@ -815,6 +815,10 @@ config = {
                                 \[ \frac{d}{dr}  \text{NPV} = (1 - (1 + r)^{-t}) \cdot \text{CFs} \cdot (-r)^{-2} + \text{CFs} \cdot r^{-1} \cdot t \cdot (1 + r)^{-(t + 1)} - 0 \]<br>
                                 \[ \frac{d}{dr}  \text{NPV} = \frac{\text{CFs}}{r} \cdot t \cdot (1 + r)^{-(t + 1)} - \frac{\text{CFs}}{r^{2}} \cdot (1 - (1 + r)^{-t}) \]<br>
                                 Therefore<br>
+                                \[ \boldsymbol{ \text{NPV'} = \frac{\text{CFs}}{r} \cdot t \cdot (1 + r)^{-(t + 1)} - \frac{\text{CFs}}{r^{2}} \cdot (1 - (1 + r)^{-t}) } \]<br>
+                                Or, since the numerical derivative has a higher accuracy, we can calculate NPV' this way:<br>
+                                By definition:<br>
+                                \[ f'(r) = \frac{(f(x + h) - f(x - h))}{2h} \]<br>
                             </p>
                     
                         <h4>Hard Level - Machine Learning</h4>
