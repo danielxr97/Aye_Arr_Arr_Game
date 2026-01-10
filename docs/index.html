@@ -640,7 +640,7 @@ config = {
                                 And<br>
                                 \[ \int v\cos{\theta}\,dt = v\cos{\theta}\,t \]<br>
                                 Therefore, the equation for finding the location of the bullet on the x-axis is:<br>
-                                \[ \boldsymbol{x(t) = v\cos(\theta)\,t} \]<br>
+                                \[ \boldsymbol{ x(t) = v\cos(\theta)\,t } \]<br>
                                 <br>
                                 <br>
                                 Now, let us take a look at the y-axis:<br>
@@ -672,7 +672,7 @@ config = {
                                 \[ \int dy = \int -gt\cdot dt + \int v\sin(\theta)dt \]<br>
                                 \[ y(t) = v\sin{\theta}\,t - \tfrac{1}{2}gt^2 + C \]<br>
                                 Again, at t = 0, C = 0:<br>
-                                \[ \boldsymbol{y(t) = v\sin(\theta)\,t - \tfrac{1}{2}gt^2} \]<br> <!-- The tfrac makes it so that the height for 1/2 would align with the height of the rest of the text -->
+                                \[ \boldsymbol{ y(t) = v\sin(\theta)\,t - \tfrac{1}{2}gt^2 } \]<br> <!-- The tfrac makes it so that the height for 1/2 would align with the height of the rest of the text -->
                             </p>
                     
                         <h4>Finding Theta (\( \theta \))</h4>
@@ -711,11 +711,11 @@ config = {
                                 \[ dy = -\sin{\theta}\frac{dx}{\cos{\theta}} + \tfrac{1}{2}\,g(\frac{dx}{v\cos^{2}(\theta)}) \]<br>
                                 \[ dy = -dx\frac{\sin{\theta}}{\cos{\theta}} + \tfrac{1}{2}\,g(\frac{dx^2}{v^2\cos^{2}(\theta)}) \]<br>
                                 Since:<br>
-                                \[ \frac{\sin{\theta}}{\cos{\theta}} = \tan{\theta} ; \frac{1}{\cos^{2}(\theta)} = 1 + \tan^{2}(\theta) \]<br>
+                                \[ \frac{\sin{\theta}}{\cos{\theta}} = \tan{\theta} \qquad ; \qquad \frac{1}{\cos^{2}(\theta)} = 1 + \tan^{2}(\theta) \]<br>
                                 Then:<br>
                                 \[ dy = -dx\cdot \tan{\theta} + \frac{g\cdot dx^2}{2v^2}\,(1 + \tan^{2}(\theta)) \]<br>
                                 Let<br>
-                                \[ T = \tan{\theta} ; K = \frac{g\cdot dx^2}{2v^2} \]<br>
+                                \[ T = \tan{\theta} \qquad ; \qquad K = \frac{g\cdot dx^2}{2v^2} \]<br>
                                 Keep in mind that K is just a constant<br>
                                 \[ dy = -dx\cdot T + K(1 + T^2) \]<br>
                                 \[ dy = -dx\cdot T + K + T^2\cdot K \]<br>
@@ -727,13 +727,42 @@ config = {
                                 \[ x = \frac{-b \pm\sqrt{b^2 - 4ac}}{2a} \]<br>
                                 Then:<br>
                                 \[ T = \frac{-(-dx) \pm\sqrt{(-dx)^2 - 4\cdot K\cdot (K - dy)}}{2K} \]<br>
-                                \[ \boldsymbol{\theta = \tan^{-1}(T)} \]<br>
+                                \[ \boldsymbol{ \theta = \tan^{-1}(T) } \]<br>
                                 By computing this, we will receive two solutions for \( \theta \), but we will only use the smallest \( \theta \).
                             </p>
                 </section>
 
                 <section class="card">
                     <h3>Rotating The Axes</h3>
+                        <p>
+                            When we take an object's x and y coordinates, it outputs its position relative to the center of the object. However, because we want the bullet and the arc to exist from the tip of the barrel, we have to find the tip of the barrel at every angle.
+                            To find the tip of the barrel coordinates at every level, we needed to rotate the axis.<br>
+                            Our first step was to find the coordinates when the angle was zero.<br>
+                            The next step is to understand that every \( (x , y) \) coordinate is equal to \( x(1 , 0) + y(0 , 1) \), so:<br>
+                            \[ (x , y) = x(1 , 0) + y(0 , 1) \]<br>
+                            Let<br>
+                            \[ i = (1 , 0) \]<br>
+                            \[ j = (0 , 1) \]<br>
+                            But because we are shooting from right to left, we will apply a vertical reflection on the x-axis:<br>
+                            \[ i = (-1 , 0) \]<br>
+                            Then, we will use i' and j' to represent the unit vectors. Where j' is perpendicular to i'. Therefore, j' is the derivative of i' with respect to \( \theta \).<br>
+                            Since<br>
+                            \[ \frac{d}{dx}\sin{\theta} = \cos{\theta} \]<br>
+                            \[ \frac{d}{dx}\cos{\theta} = -\sin{\theta} \]<br>
+                            Then<br>
+                            \[ i' = (\cos{\theta} , \sin{\theta}) \]<br>
+                            \[ j' = (-\sin{\theta} , \cos{\theta}) \]<br>
+                            So the 2D matrix is:<br>
+                            \[
+                            \mathbf{i}' = \begin{pmatrix} \cos\theta \\ \sin\theta \end{pmatrix},
+                            \qquad
+                            \mathbf{j}' = \begin{pmatrix} -\sin\theta \\ \cos\theta \end{pmatrix}
+                            \]<br>
+                            \[ \boxed{ R(\theta) = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} } \]
+                            Then that means:<br>
+                            \[ \boldsymbol{ x' = x\cdot \cos{\theta} + y\cdot (-\sin{\theta}) = x\cdot \cos{\theta} - \cdot \sin{\theta} } \]<br>
+                            \[ \boldsymbol{ y' = x\cdot \sin{\theta} + y\cdot \cos{\theta} } \]<br>
+                        </p>
                 </section>
 
                 <section class="card">
