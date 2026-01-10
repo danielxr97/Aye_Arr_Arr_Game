@@ -651,7 +651,7 @@ config = {
                                 And<br>
                                 \[ \int v\cos{\theta}\,dt = v\cos{\theta}\,t \]<br>
                                 Therefore, the equation for finding the location of the bullet on the x-axis is:<br>
-                                \[ \boldsymbol{ x(t) = v\cos(\theta)\,t } \]<br>
+                                \[ \boxed{ \boldsymbol{ x(t) = v\cos(\theta)\,t } } \]<br>
                                 <br>
                                 <br>
                                 Now, let us take a look at the y-axis:<br>
@@ -683,7 +683,7 @@ config = {
                                 \[ \int dy = \int -gt\cdot dt + \int v\sin(\theta)dt \]<br>
                                 \[ y(t) = v\sin{\theta}\,t - \tfrac{1}{2}gt^2 + C \]<br>
                                 Again, at t = 0, C = 0:<br>
-                                \[ \boldsymbol{ y(t) = v\sin(\theta)\,t - \tfrac{1}{2}gt^2 } \]<br> <!-- The tfrac makes it so that the height for 1/2 would align with the height of the rest of the text -->
+                                \[ \boxed{ \boldsymbol{ y(t) = v\sin(\theta)\,t - \tfrac{1}{2}gt^2 } } \]<br> <!-- The tfrac makes it so that the height for 1/2 would align with the height of the rest of the text -->
                             </p>
                     
                         <h4>Finding Theta (\( \theta \))</h4>
@@ -738,7 +738,7 @@ config = {
                                 \[ x = \frac{-b \pm\sqrt{b^2 - 4ac}}{2a} \]<br>
                                 Then:<br>
                                 \[ T = \frac{-(-dx) \pm\sqrt{(-dx)^2 - 4\cdot K\cdot (K - dy)}}{2K} \]<br>
-                                \[ \boldsymbol{ \theta = \tan^{-1}(T) } \]<br>
+                                \[ \boxed{ \boldsymbol{ \theta = \tan^{-1}(T) } } \]<br>
                                 By computing this, we will receive two solutions for \( \theta \), but we will only use the smallest \( \theta \).
                             </p>
                 </section>
@@ -772,8 +772,8 @@ config = {
                             \]<br>
                             \[ R(\theta) = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix} \]
                             Then that means:<br>
-                            \[ \boldsymbol{ x' = x\cdot \cos{\theta} + y\cdot (-\sin{\theta}) = x\cos{\theta} - y\sin{\theta} } \]<br>
-                            \[ \boldsymbol{ y' = x\sin{\theta} + y\cos{\theta} } \]<br>
+                            \[ \boxed{ \boldsymbol{ x' = x\cdot \cos{\theta} + y\cdot (-\sin{\theta}) = x\cos{\theta} - y\sin{\theta} } } \]<br>
+                            \[ \boxed{ \boldsymbol{ y' = x\sin{\theta} + y\cos{\theta} } } \]<br>
                         </p>
                 </section>
     
@@ -822,12 +822,12 @@ config = {
                                 Where<br>
                                 h = a very small step size, which we will set to be \( 1 \cdot 10^{-5} \)<br>
                                 <br>
-                                We will make new variables for forward and backward \( r \) and limit them to our domain to avoid division by zero:
+                                We will make new variables for forward and backward \( r \) (\( r_f \text{and} r_b \)) and limit them to our domain to avoid division by zero:
                             </p>
 
                             <ul class="text-list">
-                                <li>\( r_forward = \text{min}(1.0, r + h) \)</li>
-                                <li>\( r_backward = \text{max}(1 \cdot 10^{-8}, r - h) \)</li>
+                                <li>\( r_f = \text{min}(1.0, r + h) \)</li>
+                                <li>\( r_b = \text{max}(1 \cdot 10^{-8}, r - h) \)</li>
                             </ul>
 
                             <p>
@@ -836,17 +836,17 @@ config = {
                                 \[ r + h -r + h \]<br>
                                 \[ 2h \]<br>
                                 When \( r \) is near the boundaries<br>
-                                \[ r_forward = 1.0 \]<br>
-                                \[ r_backward = 0.999989 \]<br>
+                                \[ r_f = 1.0 \]<br>
+                                \[ r_b = 0.999989 \]<br>
                                 So<br>
-                                \[ r_forward - r_backward \]<br>
+                                \[ r_f - r_b \]<br>
                                 \[ 1.0 - 0.999989 = 1.1 \cdot 10^{-5} \]<br>
                                 Which is not \( 2h \), so we revert to<br>
                                 \[ (r + h) - (r - h) \]<br>
                                 Which is<br>
-                                \[ r_forward - r_backward \]<br>
+                                \[ r_f - r_b \]<br>
                                 Therefore<br>
-                                \[ \boxed{ \boldsymbol{ f'(r) = \frac{f(r_forward) - f(r_backward)}{r_forward - r_backward} } } \]<br>
+                                \[ \boxed{ \boldsymbol{ f'(r) = \frac{f(r_f) - f(r_b)}{r_f - r_b} } } \]<br>
                                 Now that we know how to find \( NPV' \), we can proceed forward and use the linear approximation equation to approximate the function of the IRR, allowing us to find its value.<br>
                                 <br>
                                 The linear approximation equation is<br>
