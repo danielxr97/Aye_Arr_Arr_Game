@@ -866,6 +866,20 @@ config = {
                                 Here are the two methods:
                             </p>
                             <h5>AdaGrad</h5>
+                                <p>
+                                    We used AdaGrad to optimize the aggressiveness parameter of the Newton–Raphson method rather than the IRR directly. 
+                                    A loss function is defined to quantify how far the Newton-updated IRR estimate deviates from the root condition \(\text{NPV}(r) = 0 \), with the aggressiveness parameter \( \alpha \) explicitly influencing the update step. 
+                                    Optimizing \( \alpha \) allows the algorithm to take larger steps when far from the solution and progressively smaller, more stable steps as the estimate converges toward the correct IRR.<br>
+                                    <br>
+                                    The Newton-Raphson equation for finding the \(r\) value using \( r(\alpha) \) is<br>
+                                    \[ x(\alpha) = r - \alpha \cdot \frac{\text{NPV}(r)}{\text{NPV'}(r)} \]<br>
+                                    Or we can also define it like this<br>
+                                    \[ r(\alpha) = r - \alpha \cdot \frac{\text{NPV}(r)}{\text{NPV'}(r)} \]<br>
+                                    <br>
+                                    The loss function<br>
+                                    \[ \boldsymbol{ L(\alpha) = \tfrac{1}{2} \text{NPV}(r(\alpha))^{2} } \]<br>
+                                    The loss function we use is a squared-error loss:
+                                </p>
                             <h5>Adam Optimization</h5>
                 </section>
            
