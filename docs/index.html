@@ -960,7 +960,7 @@ config = {
                                     Squaring also ensures that large errors increase \( G_t(α) \) significantly, causing the algorithm to take smaller, more stable steps as learning progresses.<br>
                                     <br>
                                     To update the estimate of the IRR, we choose a learning rate \( \eta \) (eta), which determines the aggressiveness of the updates. 
-                                    Because AdaGrad automatically shrinks the effective learning rate, a moderate value, such as η = 0.15, works well. 
+                                    Because AdaGrad automatically adjusts the effective learning rate, a moderate value, such as \( \eta = 0.15 \), works well. 
                                     Additionally, it is important to note that a gradient always points in the direction of the steepest increase. 
                                     However, we aim to reach a minimum point where the loss function is minimized, so we subtract the gradient to head in the direction of steepest decrease, the opposite direction.<br>
                                     <br>
@@ -982,12 +982,16 @@ config = {
                                     Together, these steps enable the pirate to adjust his estimate of the IRR over time, taking large steps early in the learning process and increasingly smaller, more refined steps as \( G_t(\alpha) \) increases. 
                                     This produces a stable and adaptive method for determining the correct IRR.<br>
                                     <br>
-                                    However, in AdaGrad, learning slows and may effectively stop because G_t(α) grows monotonically, causing the effective learning rate η / (G_t(α) + ϵ)^0.5 to decay toward zero. 
+                                    However, in AdaGrad, learning slows and may effectively stop because \( G_t(\alpha) \) grows monotonically, causing the effective learning rate \( \frac{\eta}{\sqrt{G_t(\alpha) + \epsilon}} \) to decay toward zero. 
                                     As a result, the gradient can stall near a local minimum, saddle point, or flat region, even if that point is not the global minimum. 
                                     To address this limitation, we employ the Adam Optimizer method, which utilizes momentum and adaptive learning rates to mitigate stagnation and enhance the exploration of the loss function, thereby increasing the likelihood of escaping flat regions and local minima.<br> 
                                     <br>
                                     Adam's path will look like this:<br>
                                 </p>
+                                <img
+                                    src="images/adam_optimizer_path.png"
+                                    alt="Adam Optimizer's Path"
+                                    title="Adam Optimizer's Path (Amini et al., 2018)">
                             </div>
                             <h5>Adam Optimization</h5>
                 </section>
