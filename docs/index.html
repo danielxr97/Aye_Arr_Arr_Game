@@ -917,10 +917,76 @@ config = {
                                     \[ \frac{d}{d\alpha} r(\alpha) = r - \alpha \cdot \frac{\text{NPV}(r)}{\text{NPV'}(r)} \]<br>
                                     \[ \frac{d}{d\alpha} r(\alpha) = 0 - 1 \cdot \frac{\text{NPV}(r)}{\text{NPV'}(r)} = -\frac{\text{NPV}(r)}{\text{NPV'}(r)} \]<br>
                                     Therefore<br>
-                                    \[ \frac{d}{d\alpha} r(\alpha) = \text{NPV}(r(\alpha)) \cdot \text{NPV'}(r(\alpha)) \cdot (-\frac{\text{NPV}(r)}{\text{NPV'}(r)} \]<br>
+                                    \[ \boldsymbol{ \frac{d}{d\alpha} r(\alpha) = \text{NPV}(r(\alpha)) \cdot \text{NPV'}(r(\alpha)) \cdot (-\frac{\text{NPV}(r)}{\text{NPV'}(r)} } \]<br>
                                     As we have done before, here, we can also use the numerical derivative instead of differentiating the equation<br>
                                     \[ \frac{d}{d\alpha} L(\alpha) = \frac{(L(\alpha + h) + L(\alpha - h)}{2h} \]<br>
                                     We will make new variables for plus and minus \( \alpha \) and the \( r \) value (\( \alpha_p \) and \( \alpha_m \)), and limit them to our domain and to avoid division by zero
+                                </p>
+
+                                <ul class="text-list">
+                                    <li>\( \alpha_p = \text{max}(0.05, \text{min}(1.0, \alpha + \epsilon ) \))</li>
+                                    <li>\(\alpha_m = \text{max}(0.05, \text{min}(1.0, \alpha - \epsilon) \))</li>
+                                </ul>
+
+                                <p>
+                                    However, when \( \alpha \) is near the boudaries dividing by \( 2\epsilon \) may not be accurate because \( 2\epsilon \) is derived from<br>
+                                    \[ (\alpha + \epsilon) - (\alpha - \epsilon) \]<br>
+                                    \[ \alpha + \epsilon -\alpha + \epsilon \]<br>
+                                    \[ 2\epsilon \]<br>
+                                    When \( \alpha \) near the boundaries<br>
+                                    \[ \alpha_p = 1.0 \]<br>
+                                    \[ \alpha_m = 0.999989 \]<br>
+                                    So<br>
+                                    \[ \alpha_p - \alpha_m \]<br>
+                                    \[ 1.0 - 0.999989 = 1.1 \cdot 10^{-5} \]<br>
+                                    Which is not \( 2\epsilon \), so we revert to<br>
+                                    \[ (\alpha + \epsilon) - (\alpha - \epsilon) \]<br>
+                                    Which is<br>
+                                    \[ \alpha_p - \alpha_m \]<br>
+                                    Therefore, the numerical derivative is<br>
+                                    \[ \boldsymbol{ L'(\alpha) = \frac{L_p(\alpha) - L_m(\alpha)}{\alpha_p - \alpha_m} } \]<br>
+                                    <br>
+                                    This derivative is the gradient of the loss<br>
+                                    \[ \boxed{ \boldsymbol{ g_t(\alpha) = \nabla L(\alpha) = \text{NPV}(r(\alpha)) \cdot \text{NPV'}(r(\alpha)) \cdot \frac{-\text{NPV}(r)}{\text{NPV'}(r)} } } \]<br>
+                                    Or this, which is what we are using<br>
+                                    \[ \boxed{ \boldsymbol{ g_t(\alpha) = \nabla L(\alpha) = \frac{L_p(\alpha) - L_m(\alpha)}{\alpha_p - \alpha_m} } } \]<br>
+                                    Where \( \nabla \) stands for nabla, which is used for the gradient of some function.<br>
+                                    Because \( r \) changes every iteration (turn), this gradient also changes each iteration, which is why we index it as \( g_t(\alpha) \).<br>
+                                    <br>
+                                    Now that we have the gradient, we can compute AdaGrad's cumulative gradient term<br>
+                                    \[ G_t(\alpha) = G_{t-1}(\alpha) + g_t(\alpha)^{2} \]<br>
+                                    <br>
+                                    We square the gradient because the magnitude of the gradient, not its sign, should influence how much we shrink future step sizes. 
+                                    Squaring also ensures that large errors increase \( G_t(α) \) significantly, causing the algorithm to take smaller, more stable steps as learning progresses.<br>
+                                    <br>
+                                    To update the estimate of the IRR, we choose a learning rate \( \eta \) (eta), which determines the aggressiveness of the updates. 
+                                    Because AdaGrad automatically shrinks the effective learning rate, a moderate value, such as η = 0.15, works well. 
+                                    Additionally, it is important to note that a gradient always points in the direction of the steepest increase. 
+                                    However, we aim to reach a minimum point where the loss function is minimized, so we subtract the gradient to head in the direction of steepest decrease, the opposite direction.<br>
+                                    <br>
+                                    The update rule<br>
+                                    \[ \alpha_{t+1} = \alpha_t -g_t(\alpha) \cdot \frac{\eta}{\sqrt{G_t(\alpha) + \epsilon}} \]<br>
+                                    We add \( \epsilon \) (epsilon) to prevent dividing by \( 0 \) and account for the small error.<br>
+                                    <br>
+                                    Here we are rescaling the learning rate per parameter:
+                                </p>
+
+                                <ul class="text-list">
+                                    <li>If \( G_t(\alpha) \) is large: we get a smaller step</li>
+                                    <li>If \( G_t(\alpha) \) is small: we get a bigger step</li>
+                                </ul>
+
+                                <p>
+                                    Once we found \( α_{t+1} \), we used it in the Newton-Raphson model.<br>
+                                    <br>
+                                    Together, these steps enable the pirate to adjust his estimate of the IRR over time, taking large steps early in the learning process and increasingly smaller, more refined steps as \( G_t(\alpha) \) increases. 
+                                    This produces a stable and adaptive method for determining the correct IRR.<br>
+                                    <br>
+                                    However, in AdaGrad, learning slows and may effectively stop because G_t(α) grows monotonically, causing the effective learning rate η / (G_t(α) + ϵ)^0.5 to decay toward zero. 
+                                    As a result, the gradient can stall near a local minimum, saddle point, or flat region, even if that point is not the global minimum. 
+                                    To address this limitation, we employ the Adam Optimizer method, which utilizes momentum and adaptive learning rates to mitigate stagnation and enhance the exploration of the loss function, thereby increasing the likelihood of escaping flat regions and local minima.<br> 
+                                    <br>
+                                    Adam's path will look like this:<br>
                                 </p>
                             </div>
                             <h5>Adam Optimization</h5>
