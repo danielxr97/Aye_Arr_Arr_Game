@@ -885,6 +885,43 @@ config = {
                                     \[ \boldsymbol{ L(\alpha) = \tfrac{1}{2} \text{NPV}(r(\alpha))^{2} } \]<br>
                                     The loss function we use is a squared-error loss:
                                 </p>
+
+                                <ul class="text-list">
+                                    <li>If \( \text{NPV}(r(\alpha)) = 0 \) our loss function \( L(\alpha) = 0 \).</li>
+                                    <li>If \( \text{NPV}(r(\alpha)) \) is large (positive or negative), our loss function \( L(\alpha) \) is large.</li>
+                                </ul>
+
+                                <p>
+                                    This is similar to the Mean Squared Error (MSE) function, except that MSE typically uses datasets, whereas this problem does not.<br>
+                                    <br>
+                                    This loss has desirable properties:
+                                </p>
+
+                                <ul class="text-list">
+                                    <li>It is easy to compute.</li>
+                                    <li>It is easy to differentiate.</li>
+                                    <li>Always bigger than or equal to zero, \( L(\alpha) = 0 \)  exactly when \( \text{NPV}(r(\alpha)) = 0 \).</li>
+                                </ul>
+
+                                <p>
+                                    To apply AdaGrad, we compute the derivative of the loss with respect to \( \alpha \).<br>
+                                    <br>
+                                    Using the chain rule<br>
+                                    \[ \frac{d}{d\alpha} L = \tfrac{1}{2} \cdot 2 \text{NPV}(r(\alpha)) \cdot \frac{d}{d\alpha} \text{NPV}(r(\alpha)) \]<br>
+                                    Then<br>
+                                    \[ \frac{d}{d\alpha} \text{NPV} = \text{NPV'}(r(\alpha)) \cdot \frac{d}{d\alpha} r(\alpha) \]<br>
+                                    So<br>
+                                    \[ \frac{d}{d\alpha} L = \text{NPV}(r(\alpha)) \cdot \text{NPV'}(r(\alpha)) \cdot \frac{d}{d\alpha} r(\alpha) \]<br>
+                                    <br>
+                                    Then, the derivative of \( \frac{d}{d\alpha} r(\alpha) \) is<br>
+                                    \[ \frac{d}{d\alpha} r(\alpha) = r - \alpha \cdot \frac{\text{NPV}(r)}{\text{NPV'}(r)} \]<br>
+                                    \[ \frac{d}{d\alpha} r(\alpha) = 0 - 1 \cdot \frac{\text{NPV}(r)}{\text{NPV'}(r)} = -\frac{\text{NPV}(r)}{\text{NPV'}(r)} \]<br>
+                                    Therefore<br>
+                                    \[ \frac{d}{d\alpha} r(\alpha) = \text{NPV}(r(\alpha)) \cdot \text{NPV'}(r(\alpha)) \cdot (-\frac{\text{NPV}(r)}{\text{NPV'}(r)} \]<br>
+                                    As we have done before, here, we can also use the numerical derivative instead of differentiating the equation<br>
+                                    \[ \frac{d}{d\alpha} L(\alpha) = \frac{(L(\alpha + h) + L(\alpha - h)}{2h} \]<br>
+                                    We will make new variables for plus and minus \( \alpha \) and the \( r \) value (\( \alpha_p \) and \( \alpha_m \)), and limit them to our domain and to avoid division by zero
+                                </p>
                             </div>
                             <h5>Adam Optimization</h5>
                 </section>
