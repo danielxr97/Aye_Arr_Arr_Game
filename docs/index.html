@@ -485,6 +485,10 @@ config = {
             margin-bottom:
                 4px;
         }
+
+        .card-h5-text{
+            margin-left: 20px;
+        }
         
     </style>
 
@@ -866,6 +870,7 @@ config = {
                                 Here are the two methods:
                             </p>
                             <h5>AdaGrad</h5>
+                            <div class="card-h5-text">
                                 <p>
                                     We used AdaGrad to optimize the aggressiveness parameter of the Newton–Raphson method rather than the IRR directly. 
                                     A loss function is defined to quantify how far the Newton-updated IRR estimate deviates from the root condition \(\text{NPV}(r) = 0 \), with the aggressiveness parameter \( \alpha \) explicitly influencing the update step. 
@@ -880,6 +885,7 @@ config = {
                                     \[ \boldsymbol{ L(\alpha) = \tfrac{1}{2} \text{NPV}(r(\alpha))^{2} } \]<br>
                                     The loss function we use is a squared-error loss:
                                 </p>
+                            </div>
                             <h5>Adam Optimization</h5>
                 </section>
            
