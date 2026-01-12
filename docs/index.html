@@ -993,7 +993,14 @@ config = {
                                     <br>
                                     However, in AdaGrad, learning slows and may effectively stop because \( G_t(\alpha) \) grows monotonically, causing the effective learning rate \( \frac{\eta}{\sqrt{G_t(\alpha) + \epsilon}} \) to decay toward zero. 
                                     As a result, the gradient can stall near a local minimum, saddle point, or flat region, even if that point is not the global minimum. 
-                                    To address this limitation, we employ the Adam Optimizer method, which utilizes momentum and adaptive learning rates to mitigate stagnation and enhance the exploration of the loss function, thereby increasing the likelihood of escaping flat regions and local minima.<br> 
+                                    To address this limitation, we employ the Adam Optimizer method.
+                                </p>
+                                </figure>
+                            </div>
+                            <h5>Adam Optimization</h5>
+                            <div class="card-h5-text">
+                                <p>
+                                    With Adam, we utilized momentum and adaptive learning rates to mitigate stagnation and enhance the exploration of the loss function, thereby increasing the likelihood of escaping flat regions and local minima.<br> 
                                     <br>
                                     Adam's path will look like this:<br>
                                 </p>
@@ -1005,7 +1012,6 @@ config = {
                                     <figcaption>Adam Optimizer's Path (Amini et al., 2018)</figcaption>
                                 </figure>
                             </div>
-                            <h5>Adam Optimization</h5>
                 </section>
            
             </div>
