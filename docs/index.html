@@ -996,12 +996,13 @@ config = {
                                     To address this limitation, we employ the Adam Optimizer method.
                                 </p>
                             </div>
+                    
                             <h5>Adam Optimization</h5>
                             <div class="card-h5-text">
                                 <p>
                                     With Adam, we utilized momentum and adaptive learning rates to mitigate stagnation and enhance the exploration of the loss function, thereby increasing the likelihood of escaping flat regions and local minima.<br> 
                                     <br>
-                                    Adam's path will look like this:<br>
+                                    Adam's optimization path can be visualized as follows:<br>
                                 </p>
                                 <figure class="figure">
                                     <img
@@ -1012,8 +1013,19 @@ config = {
                                 </figure>
 
                                 <p>
-                                    What this means is<br>
+                                    Conceptually, Adam can be summarized as<br>
                                     \[ \boldsymbol{ \text{Adam} = \text{AdaGrad} + \text{Momentum} + \text{Bias Correction} } \]<br>
+                                    Adam improves AdaGrad in two key ways:
+                                </p>
+
+                                <ul class="text-list">
+                                    <li>\( \underline{\text{Momentum:}} \) smooths noisy gradients and provides a consistent update direction.</li>
+                                    <li>\( \underline{\text{Adaptive scaling:}} \) Adam adjusts step sizes based on gradient magnitude like AdaGrad, but because it uses exponentially weighted averages instead of cumulative sums, step sizes can increase again when gradients become smaller.</li>
+                                </ul>
+
+                                <p>
+                                    A noisy gradient refers to gradient values that fluctuate significantly between iterations, either in magnitude or direction, even when overall progress toward a minimum is occurring.<br>
+                                    <br>
                                 </p>
                             </div>
                 </section>
