@@ -967,7 +967,7 @@ config = {
                                     Which is<br>
                                     \[ \alpha_p - \alpha_m \]<br>
                                     Therefore, the numerical derivative is<br>
-                                    \[ \boldsymbol{ L'(\alpha) = \frac{L_p(\alpha) - L_m(\alpha)}{\alpha_p - \alpha_m} } \]<br>
+                                    \[ \boxed{ \boldsymbol{ L'(\alpha) = \frac{L_p(\alpha) - L_m(\alpha)}{\alpha_p - \alpha_m} } } \]<br>
                                     <br>
                                     This derivative is the gradient of the loss<br>
                                     \[ \boxed{ \boldsymbol{ g_t(\alpha) = \nabla L(\alpha) = \text{NPV}(r(\alpha)) \cdot \text{NPV'}(r(\alpha)) \cdot \frac{-\text{NPV}(r)}{\text{NPV'}(r)} } } \]<br>
@@ -988,7 +988,7 @@ config = {
                                     However, we aim to reach a minimum point where the loss function is minimized, so we subtract the gradient to head in the direction of steepest decrease, the opposite direction.<br>
                                     <br>
                                     The update rule<br>
-                                    \[ \boldsymbol{ \boxed{ \alpha_{t+1} = \alpha_t -g_t(\alpha) \cdot \frac{\eta}{\sqrt{G_t(\alpha) + \epsilon}} } } \]<br>
+                                    \[ \boxed{ \boldsymbol{ \alpha_{t+1} = \alpha_t -g_t(\alpha) \cdot \frac{\eta}{\sqrt{G_t(\alpha) + \epsilon}} } } \]<br>
                                     We add \( \epsilon \) (epsilon) to prevent dividing by \( 0 \) and account for the small error.<br>
                                     <br>
                                     Here we are rescaling the learning rate per parameter:
