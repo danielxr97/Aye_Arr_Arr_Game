@@ -1041,7 +1041,12 @@ config = {
 
                                 <h6>Momentum</h6>
                                 <p>
-                                    
+                                    Momentum tracks the direction of the gradient using an exponentially weighted average. Let \( g_t(\alpha) \) denote the gradient of the loss with respect to \( \alpha \).<br>
+                                    since the gradient formula is<br>
+                                    \[ G_t(alpha) = G_{t-1}(\alpha) + g_t(\alpha)^{2} \]<br>
+                                    And as momentum needs to account for direction, the momentum term is<br>
+                                    \[ G_{t,m}(\alpha) = \beta_1 * G_{t-1,m}(\alpha) + (1 - \beta_1) * g_t(\alpha) \]<br>
+                                    Here, where \( \beta_1 \) is the momentum parameter. A common choice \( \beta_1 \) is \( 0.9 \), meaning a weight of \( 90% \) to the past gradient and \( 10% \) to the current gradient.<br>
                                 </p>
                             </div>
                 </section>
