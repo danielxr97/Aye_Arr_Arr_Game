@@ -988,7 +988,7 @@ config = {
                                     However, we aim to reach a minimum point where the loss function is minimized, so we subtract the gradient to head in the direction of steepest decrease, the opposite direction.<br>
                                     <br>
                                     The update rule<br>
-                                    \[ \alpha_{t+1} = \alpha_t -g_t(\alpha) \cdot \frac{\eta}{\sqrt{G_t(\alpha) + \epsilon}} \]<br>
+                                    \[ \boldsymbol{ \boxed{ \alpha_{t+1} = \alpha_t -g_t(\alpha) \cdot \frac{\eta}{\sqrt{G_t(\alpha) + \epsilon}} } } \]<br>
                                     We add \( \epsilon \) (epsilon) to prevent dividing by \( 0 \) and account for the small error.<br>
                                     <br>
                                     Here we are rescaling the learning rate per parameter:
@@ -1047,8 +1047,37 @@ config = {
                                     since the gradient formula is<br>
                                     \[ G_t(\alpha) = G_{t-1}(\alpha) + g_t(\alpha)^{2} \]<br>
                                     And as momentum needs to account for direction, the momentum term is<br>
-                                    \[ G_{t,m}(\alpha) = \beta_1 \cdot G_{t-1,m}(\alpha) + (1 - \beta_1) \cdot g_t(\alpha) \]<br>
-                                    Here, where \( \beta_1 \) is the momentum parameter. A common choice \( \beta_1 \) is \( 0.9 \), meaning a weight of \( 90% \) to the past gradient and \( 10% \) to the current gradient.<br>
+                                    \[ \boxed{ \boldsymbol{ m_t = \beta_1 \cdot m_{t-1} + (1 - \beta_1) \cdot g_t(\alpha) } } \]<br>
+                                    Here, where \( \beta_1 \) is the momentum parameter. A common choice \( \beta_1 \) is \( 0.9 \), meaning a weight of \( 90\% \) to the past gradient and \( 10\% \) to the current gradient.<br>
+                                </p>
+
+                                <h6>Volatility</h6>
+                                <p>
+                                    Volatility tracks the magnitude of gradients using an exponential weighted moving average of squared gradients.<br>
+                                    <br>
+                                    Again, since the gradient formula is<br>
+                                    \[ G_t(\alpha) = G_{t-1}(\alpha) + g_t(\alpha)^{2} \]<br>
+                                    Then<br>
+                                    \[ \boxed{ \boldsymbol{ v_t = \beta_2 \cdot v_{t-1} + (1 - \beta_2) \cdot g_t(\alpha)^{2} } } \]<br>
+                                    The parameter \( \beta_2 \) is typically set to \( 0.999 \), resulting in a variance that has a much longer memory than momentum. The reason that \( \beta_2 \) is much larger than \( \beta_1 \) is that we want the variance to change slowly. 
+                                    We do not want the pirate to overshoot and undershoot repeatedly.
+                                </p>
+
+                                <h6>Bias Correction</h6>
+                                <p>
+                                    Because m_t and v_t are initialized at zero, they are biased toward zero in early iterations.<br>
+                                    Therefore, to correct the momentum and volatility bias, we use:<br>
+                                    \[ \boldsymbol{ \boxed{ \hat{m}_t = \frac{m_t}{1 - \beta_{1,t}} } \qquad ; \qquad \boxed{ \hat{v}_t = \frac{v_t}{1 - \beta_{2,t}} } } \]<br>
+                                    For example, at \( t = 1 \):<br>
+                                    \[ \hat{m}_t = \frac{0.1g_1}{1 - 0.9} = g_1 \]<br>
+                                    Rather than simply using: \( m_1 = 0.1g_1 \).<br>
+                                </p>
+
+                                <h6>The Update Rule</h6>
+                                <p>
+                                    Finally, the aggressiveness parameter alpha is updated using:<br>
+                                    \[ \boxed{ \boldsymbol{ \alpha_{t+1} = \alpha_t - \frac{\eta\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} } } \]<br>
+                                    The constant epsilon is added outside the square root to prevent division by zero without affecting the variance estimate itself.
                                 </p>
                             </div>
                 </section>
