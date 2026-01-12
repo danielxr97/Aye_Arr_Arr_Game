@@ -1067,7 +1067,7 @@ config = {
                                 <p>
                                     Because m_t and v_t are initialized at zero, they are biased toward zero in early iterations.<br>
                                     Therefore, to correct the momentum and volatility bias, we use:<br>
-                                    \[ \boldsymbol{ \boxed{ \hat{m}_t = \frac{m_t}{1 - \beta_{1,t}} } \qquad ; \qquad \boxed{ \hat{v}_t = \frac{v_t}{1 - \beta_{2,t}} } } \]<br>
+                                    \[ \boxed{ \boldsymbol{ \hat{m}_t = \frac{m_t}{1 - \beta_{1,t}} } } \qquad ; \qquad \boxed{ \boldsymbol{ \hat{v}_t = \frac{v_t}{1 - \beta_{2,t}} } } \]<br>
                                     For example, at \( t = 1 \):<br>
                                     \[ \hat{m}_t = \frac{0.1g_1}{1 - 0.9} = g_1 \]<br>
                                     Rather than simply using: \( m_1 = 0.1g_1 \).<br>
