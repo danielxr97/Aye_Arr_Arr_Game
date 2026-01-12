@@ -265,7 +265,7 @@ config = {
     <link rel="icon" type="image/png" href="favicon.png" sizes="16x16">
 
     <style>
-        #status {
+        #status{
             display: inline-block;
             vertical-align: top;
             margin-top: 20px;
@@ -274,7 +274,7 @@ config = {
             color: rgb(120, 120, 120);
         }
 
-        #progress {
+        #progress{
             height: 20px;
             width: 300px;
         }
@@ -285,7 +285,7 @@ config = {
 
         /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
         /* average size of droid screen 470dp x 320dp  */
-        canvas.emscripten {
+        canvas.emscripten{
             border: 0px none;
             background-color: transparent;
             width: 100%;
@@ -299,7 +299,7 @@ config = {
             inset: 0;
         }
 
-        body {
+        body{
             font-family: arial;
             margin: 0;
             padding: 0;
@@ -313,13 +313,13 @@ config = {
            right:0px;
         }
 
-        .bottomright {
+        .bottomright{
             position:absolute;
             top: 40%;
             right: 0px;
         }
 
-        .center {
+        .center{
             display: flex;
             align-items: center;
             justify-content: center;
@@ -512,6 +512,36 @@ config = {
             text-decoration-thickness: 2px;
             text-underline-offset: 4px;
         }
+
+        .references{
+            margin-top: 40px;
+            font-size: 0.95rem;
+        }
+        
+        .references h3{
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+        
+        .reference{
+            margin-left: 2em;
+            text-indent: -2em;   /* hanging indent */
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        
+        .reference em{
+            font-style: italic;
+        }
+        
+        .reference a{
+            color: #0645ad;
+            text-decoration: none;
+        }
+        
+        .reference a:hover{
+            text-decoration: underline;
+        }
         
     </style>
 
@@ -581,15 +611,9 @@ config = {
                         </p>
 
                         <ul class="text-list">
-                            <li>
-                                Cash Flows (CFs) = Booty
-                            </li>
-                            <li>
-                                Initial cost of the project = Blood
-                            </li>
-                            <li>
-                                t = Plunders
-                            </li>
+                            <li>Cash Flows (CFs) = Booty</li>
+                            <li>Initial cost of the project = Blood</li>
+                            <li>\( t \) = Plunders</li>
                         </ul>
 
                         <p>
@@ -599,22 +623,18 @@ config = {
                         </p>
 
                         <ul class="text-list">
-                            <li>
-                                We select the CFs value at random from 1 to 10, which we maintain throughout the years.
-                            </li>
-                            <li>
-                                We select at random a value from 0.2 to 0.7 for the r-value location of the pirate and player. We used 0.2 and 0.7 due to the weapons' locations and the ease of the game.
-                            </li>
-                            <li>
-                                We compute the value of the Initial Cost that will make the NPV equal to zero using either the pirate's r location for the player or the player's r location for the pirate because we need their locations' r value to be the IRR for the NPV equation. Once we have the Initial Cost, we can solve the NPV equation.
-                            </li>
+                            <li>We select the CFs value at random from \( 1 \) to \( 10 \), which we maintain throughout the years.</li>
+                            <li>We select at random a value from \( 0.2 \) to \( 0.7 \) for the \( r \)-value location of the pirate and player. 
+                                We used \( 0.2 \) and \( 0.7 \) due to the weapons' locations and the ease of the game.</li>
+                            <li>We compute the value of the Initial Cost that will make the NPV equal to zero using either the pirate's \( r \) location for the player or the player's \( r \) location for the pirate because we need their locations' \( r \) value to be the IRR for the NPV equation. 
+                                Once we have the Initial Cost, we can solve the NPV equation.</li>
                         </ul>
 
                         <p>
                             Since the NPV equation looks like this:<br>
                             \[ \boldsymbol{ \text{NPV} = \frac{\text{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \text{Initial Cost} } \]<br> <!-- The square brackets will center-align the text and the round brackets will keep it like it's a regular text -->
                             <br>
-                            Then, we will solve for Blood:<br>
+                            Then, we will solve for Initial Cost:<br>
                             \[ \text{Initial Cost} = \frac{\text{CF}}{r}\left(1 - (1 + r)^{-t}\right) - \text{NPV} \]<br>
                             \[ \text{Initial Cost} = \frac{\text{CF}}{r}\left(1 - (1 + r)^{-t}\right) - 0 \]<br>
                             \[ \text{Initial Cost} = \frac{\text{CF}}{r}\left(1 - (1 + r)^{-t}\right) \]<br>
@@ -628,7 +648,7 @@ config = {
                         <h4>The Shooting Arc</h4>
                             <p>
                                 Both the Cannon and the Blunderbuss use the same projectile motion physics to determine the path of a shot.
-                                Given a launch angle \( \theta \) and a shot speed v (the power), we plot the trajectory of each bullet.<br>
+                                Given a launch angle \( \theta \) and a shot velocity \( \vec{v} \) (the power), we plot the trajectory of each bullet.<br>
                                 <br>
                                 Assumptions:
                             </p>
@@ -664,24 +684,24 @@ config = {
                                 <br>
                                 Another important point to note is that an object experiences acceleration only when a force is acting upon it.<br>
                                 <br>
-                                After understanding the basics, we can start solving for the horizontal and vertical movement, x and y, of the bullet.<br>
+                                After understanding the basics, we can begin solving for the horizontal and vertical movement, \( x \) and \( y \), of the bullet.<br>
                                 <br>
-                                Let us start with the x-axis:<br>
+                                Let us start with the \( x \)-axis:<br>
                                 Since velocity is the derivative of position<br>
                                 \[ \vec{v_x} = \frac{dx}{dt} \]<br>
                                 Since \( \vec{v_x} \) is a constant:<br>
                                 \[ \frac{dx}{dt} = v\cos{\theta} \]<br>
-                                Then, we integrate with respect to t:<br>
+                                Then, we integrate with respect to \( t \):<br>
                                 \[ \int dx = \int v\cos{\theta}\, dt \]<br>
                                 Since<br>
                                 \[ \int dx = x \]<br>
                                 And<br>
                                 \[ \int v\cos{\theta}\,dt = v\cos{\theta}\,t \]<br>
-                                Therefore, the equation for finding the location of the bullet on the x-axis is:<br>
+                                Therefore, the equation for finding the location of the bullet on the \( x \)-axis is:<br>
                                 \[ \boxed{ \boldsymbol{ x(t) = v\cos(\theta)\,t } } \]<br>
                                 <br>
                                 <br>
-                                Now, let us take a look at the y-axis:<br>
+                                Now, let us take a look at the \( y \)-axis:<br>
                                 Now that we have the force of gravity acting upon the bullet<br>
                                 \[ \vec{v_y} = -g \]<br>
                                 Since<br>
@@ -691,12 +711,12 @@ config = {
                                 \[ \vec{a_y} = \frac{dv_y}{dt} \]<br>
                                 \[ -\vec{g} = \frac{dv_y}{dt} \]<br>
                                 \[ dv_y = -g\cdot dt \]<br>
-                                From here, we integrate acceleration with respect to t<br>
+                                From here, we integrate acceleration with respect to \( t \)<br>
                                 Since<br>
                                 \[ \int dv_y = v_y \]<br>
                                 And<br>
                                 \[ \int -g\cdot dt = -gt + C \]<br>
-                                Because we are integrating acceleration to get velocity, so at t=0:<br>
+                                Because we are integrating acceleration to get velocity, so at \( t = 0 \):<br>
                                 \[ v_y(0) = -g\cdot 0 + C \]<br>
                                 \[ v_y(0) = C \]<br>
                                 Therefore<br>
@@ -709,21 +729,21 @@ config = {
                                 \[ \frac{dy}{dt} = -gt + v\sin(\theta) \]<br>
                                 \[ \int dy = \int -gt\cdot dt + \int v\sin(\theta)dt \]<br>
                                 \[ y(t) = v\sin{\theta}\,t - \tfrac{1}{2}gt^2 + C \]<br>
-                                Again, at t = 0, C = 0:<br>
+                                Again, at \( t = 0 \), \( C = 0 \):<br>
                                 \[ \boxed{ \boldsymbol{ y(t) = v\sin(\theta)\,t - \tfrac{1}{2}gt^2 } } \]<br> <!-- The tfrac makes it so that the height for 1/2 would align with the height of the rest of the text -->
                             </p>
                     
                         <h4>Finding Theta (\( \theta \))</h4>
                             <p>
-                                As the pirate is not a real player, but yet has to make a shot, we need to calculate the angle that he needs to shoot at in order for him to hit the r-value that he "selected".<br>
+                                As the pirate is not a real player, but yet has to make a shot, we need to calculate the angle that he needs to shoot at in order for him to hit the \( r \)-value that he "selected".<br>
                                 <br>
                                 Variables:
                             </p>
 
                             <ul class="text-list">
-                                <li>\( x_0, y_0 = \text{The starting position of the pirate's weapon} \)</li>
-                                <li>\( x_1, y_1 = \text{The position of the pirate's shot on the ground - the target} \)</li>
-                                <li>t = Here, it is the time it takes to hit the target and not the time step</li>
+                                <li>\( x_0, y_0 = \) The starting position of the pirate's weapon</li>
+                                <li>\( x_1, y_1 = \) The position of the pirate's shot on the ground - the target</li>
+                                <li>\( t = \) Here, it is the time it takes to hit the target and not the time step</li>
                             </ul>
 
                             <p>
@@ -732,19 +752,19 @@ config = {
                                 \( y_1 = y_0 - (v\sin{\theta}\,t - \tfrac{1}{2}gt^2) \)<br>
                                 We are subtracting \( y_0 \) from the rest of the equation because, in the game, to go up, we need to subtract from the total screen size.<br>
                                 <br>
-                                Before we can find Theta (\( \theta \)), we need to find t, so let us start by solving for t:<br>
+                                Before we can find Theta (\( \theta \)), we need to find t, so let us start by solving for \( t \):<br>
                                 \[ x_1 - x_0 = v\cos{\theta}\,t \]<br>
                                 Let<br>
                                 \[ dx = x_1 - x_0 \]<br>
                                 \[ dx = v\cos{\theta}\,t \]<br>
                                 \[ t = \frac{dx}{v\cos{\theta}} \]<br>
                                 <br>
-                                Now that we know t, let us use it to help us find \( \theta \)<br>
+                                Now that we know \( t \), let us use it to help us find \( \theta \)<br>
                                 \[ y_1 - y_0 = -v\sin{\theta}\,t + \tfrac{1}{2}\,gt^2 \]<br>
                                 Let<br>
                                 \[ dy = y_1 - y_0 \]<br>
                                 \[ dy = -v\sin{\theta}\,t + \tfrac{1}{2}\,gt^2 \]<br>
-                                Substituting the value of t<br>
+                                Substituting the value of \( t \)<br>
                                 \[ dy = -v\sin{\theta}\frac{dx}{v\cos{\theta}} + \tfrac{1}{2}g(\frac{dx}{v\cos^{2}(\theta)}) \]<br>
                                 \[ dy = -\sin{\theta}\frac{dx}{\cos{\theta}} + \tfrac{1}{2}\,g(\frac{dx}{v\cos^{2}(\theta)}) \]<br>
                                 \[ dy = -dx\frac{\sin{\theta}}{\cos{\theta}} + \tfrac{1}{2}\,g(\frac{dx^2}{v^2\cos^{2}(\theta)}) \]<br>
@@ -754,7 +774,7 @@ config = {
                                 \[ dy = -dx\cdot \tan{\theta} + \frac{g\cdot dx^2}{2v^2}\,(1 + \tan^{2}(\theta)) \]<br>
                                 Let<br>
                                 \[ T = \tan{\theta} \qquad ; \qquad K = \frac{g\cdot dx^2}{2v^2} \]<br>
-                                Keep in mind that K is just a constant<br>
+                                Keep in mind that \( K \) is just a constant<br>
                                 \[ dy = -dx\cdot T + K(1 + T^2) \]<br>
                                 \[ dy = -dx\cdot T + K + T^2\cdot K \]<br>
                                 \[ dy = K\cdot T^2 - dx\cdot T + K \]<br>
@@ -773,7 +793,7 @@ config = {
                 <section class="card">
                     <h3>Rotating The Axes</h3>
                         <p>
-                            When we take an object's x and y coordinates, it outputs its position relative to the center of the object. 
+                            When we take an object's \( x \) and \( y \) coordinates, it outputs its position relative to the center of the object. 
                             However, because we want the bullet and the arc to exist from the tip of the barrel, we have to find the tip of the barrel at every angle.
                             To find the tip of the barrel coordinates at every level, we needed to rotate the axis.<br>
                             <br>
@@ -784,7 +804,7 @@ config = {
                             \[ i = (1 , 0) \qquad ; \qquad j = (0 , 1) \]<br>
                             But because we are shooting from right to left, we will apply a vertical reflection on the x-axis:<br>
                             \[ i = (-1 , 0) \]<br>
-                            Then, we will use i' and j' to represent the unit vectors. Where j' is perpendicular to i'. Therefore, j' is the derivative of i' with respect to \( \theta \).<br>
+                            Then, we will use \( i' \) and \( j' \) to represent the unit vectors. Where \( j' \) is perpendicular to \( i' \). Therefore, \( j' \) is the derivative of \( i' \) with respect to \( \theta \).<br>
                             Since<br>
                             \[ \frac{d}{dx}\sin{\theta} = \cos{\theta} \]<br>
                             \[ \frac{d}{dx}\cos{\theta} = -\sin{\theta} \]<br>
@@ -808,12 +828,12 @@ config = {
                     <h3>Levels of Difficulty</h3>
                         <h4>Easy Level - Bisection Method</h4>
                             <p>
-                                The Bisection method is calculated by starting with an interval range that is between the numbers 0 and 1, such as \([0, 0.5]\), for example. 
+                                The Bisection method is calculated by starting with an interval range that is between the numbers \( 0 \) and \( 1 \), such as \([0, 0.5]\), for example. 
                                 From there, we will compute the midpoint or the average number for those two values, which will look like this:<br>
                                 <br>
                                 \( \text{midpoint} = \frac{0 + 0.5}{2} \)<br>
                                 <br>
-                                Once we obtain the midpoint, we use it as the pirate's r guess value for the NPV calculation, so we perform \(NPV(0.25)\).<br>
+                                Once we obtain the midpoint, we use it as the pirate's guess for the r-value for the NPV calculation, so we perform \(NPV(0.25)\).<br>
                                     - If it comes out that the NPV is positive, we know that the midpoint is too low and we will set it as the pirate's lower limit: \([0.25,0.5]\)<br>
                                     - If it comes out that the NPV is negative, we know that the midpoint is too high, and we will set it as the pirate's higher limit: \([0,0.25]\)<br>
                                 <br>
@@ -821,7 +841,7 @@ config = {
                             </p>
                         <h4>Medium Level - Newton-Raphson Method</h4>
                             <p>
-                                The Newton-Raphson method is calculated by starting with a random r value, which we made to be between 0.2 and 0.7. 
+                                The Newton-Raphson method is calculated by starting with a random r value, which we made to be between \( 0.2 \) and \( 0.7 \). 
                                 From there, we will need to calculate the derivative of the NPV and determine the slope at the r-value that the player selected. 
                                 Once we find the slope, we can also calculate the NPV value at the chosen r-value.<br>
                                 <br>
@@ -847,7 +867,7 @@ config = {
                                 By definition<br>
                                 \[ f'(r) = \frac{(f(r + h) - f(r - h))}{2h} \]<br>
                                 Where<br>
-                                h = a very small step size, which we will set to be \( 1 \cdot 10^{-5} \)<br>
+                                \( h = \) a very small step size, which we will set to be \( 1 \cdot 10^{-5} \)<br>
                                 <br>
                                 We will make new variables for forward and backward \( r \) (\( r_f \) and \( r_b \)) and limit them to our domain to avoid division by zero:
                             </p>
@@ -878,12 +898,12 @@ config = {
                                 <br>
                                 The linear approximation equation is<br>
                                 \[ y = \text{NPV}(r) + \text{NPV’}(r) \cdot (x - r) \]<br>
-                                Then, we let \( y = 0 \) so we can isolate for x, which is the IRR value we are approximating.<br>
+                                Then, we let \( y = 0 \) so we can isolate for \( x \), which is the IRR value we are approximating.<br>
                                 \[ 0 = \text{NPV}(r) + \text{NPV’}(r) \cdot (x - r) \]<br>
                                 \[ x = r - \frac{\text{NPV}(r)}{\text{NPV'}(r)} \]<br>
-                                The result for x, as mentioned above, is the approximation for IRR that the Pirate will use during its turn.<br>
+                                The result for \( x \), as mentioned above, is the approximation for IRR that the Pirate will use during its turn.<br>
                                 <br>
-                                However, we want to control how aggressively the pirate guesses the r-value of the player. Therefore, we will use alpha, \( \alpha \), to do that.<br>
+                                However, we want to control how aggressively the pirate guesses the \( r \)-value of the player. Therefore, we will use alpha, \( \alpha \), to do that.<br>
                                 \[ \boxed{ \boldsymbol{ x = r - \alpha \cdot \frac{\text{NPV}(r)}{\text{NPV'}(r)} } } \]<br>
                             </p>
                     
@@ -899,7 +919,7 @@ config = {
                                     A loss function is defined to quantify how far the Newton-updated IRR estimate deviates from the root condition \(\text{NPV}(r) = 0 \), with the aggressiveness parameter \( \alpha \) explicitly influencing the update step. 
                                     Optimizing \( \alpha \) allows the algorithm to take larger steps when far from the solution and progressively smaller, more stable steps as the estimate converges toward the correct IRR.<br>
                                     <br>
-                                    The Newton-Raphson equation for finding the \(r\) value using \( r(\alpha) \) is<br>
+                                    The Newton-Raphson equation for finding the \(r\)-value using \( r(\alpha) \) is<br>
                                     \[ x(\alpha) = r - \alpha \cdot \frac{\text{NPV}(r)}{\text{NPV'}(r)} \]<br>
                                     Or we can also define it like this<br>
                                     \[ r(\alpha) = r - \alpha \cdot \frac{\text{NPV}(r)}{\text{NPV'}(r)} \]<br>
@@ -943,7 +963,7 @@ config = {
                                     \[ \boldsymbol{ \frac{d}{d\alpha} r(\alpha) = \text{NPV}(r(\alpha)) \cdot \text{NPV'}(r(\alpha)) \cdot (-\frac{\text{NPV}(r)}{\text{NPV'}(r)} } \]<br>
                                     As we have done before, here, we can also use the numerical derivative instead of differentiating the equation<br>
                                     \[ \frac{d}{d\alpha} L(\alpha) = \frac{(L(\alpha + h) + L(\alpha - h)}{2h} \]<br>
-                                    We will make new variables for plus and minus \( \alpha \) and the \( r \) value (\( \alpha_p \) and \( \alpha_m \)), and limit them to our domain and to avoid division by zero
+                                    We will make new variables for plus and minus \( \alpha \) and the \( r \)-value (\( \alpha_p \) and \( \alpha_m \)), and limit them to our domain and to avoid division by zero
                                 </p>
 
                                 <ul class="text-list">
@@ -1084,6 +1104,21 @@ config = {
            
             </div>
         </section>
+
+        <section class="references">
+            <div class="behind-the-scenes-grid">
+                <h3>Reference</h3>
+                    <p class="reference">
+                        Amini, A., Amini, A. P., Karaman, S., & Rus, D. (2018, May). 
+                        <em>Spatial Uncertainty Sampling for End-to-End Control</em>. 
+                        Research Gate. 
+                        <a https://www.researchgate.net/figure/Non-convex-optimization-We-utilize-stochastic-gradient-descent-to-find-a-local-optimum_fig1_325142728>
+                        https://www.researchgate.net/figure/Non-convex-optimization-We-utilize-stochastic-gradient-descent-to-find-a-local-optimum_fig1_325142728
+                        </a>
+                    </p>
+            </div>
+        </section>
+        
     </div>
 
     <div id=crt  class=bottomright >
