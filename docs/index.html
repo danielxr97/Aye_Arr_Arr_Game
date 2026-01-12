@@ -504,6 +504,12 @@ config = {
             max-width: 100%;
             height: auto;
         }
+
+        .underline{
+            text-decoration-line: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+        }
         
     </style>
 
@@ -1025,16 +1031,18 @@ config = {
                                 </p>
 
                                 <ul class="text-list">
-                                    <li><u>Momentum:</u> smooths noisy gradients and provides a consistent update direction.</li>
-                                    <li>\( \underline{\text{Adaptive scaling:}} \) Adam adjusts step sizes based on gradient magnitude like AdaGrad, but because it uses exponentially weighted averages instead of cumulative sums, step sizes can increase again when gradients become smaller.</li>
+                                    <li><span class="underline">Momentum:</span> smooths noisy gradients and provides a consistent update direction.</li>
+                                    <li><span class="underline">Adaptive scaling:</span> Adam adjusts step sizes based on gradient magnitude like AdaGrad, but because it uses exponentially weighted averages instead of cumulative sums, step sizes can increase again when gradients become smaller.</li>
                                 </ul>
 
                                 <p>
                                     A noisy gradient refers to gradient values that fluctuate significantly between iterations, either in magnitude or direction, even when overall progress toward a minimum is occurring.<br>
-                                    <strong>Momentum</strong>
                                 </p>
 
                                 <h6>Momentum</h6>
+                                <p>
+                                    
+                                </p>
                             </div>
                 </section>
            
