@@ -1067,7 +1067,7 @@ config = {
                                     A noisy gradient refers to gradient values that fluctuate significantly between iterations, either in magnitude or direction, even when overall progress toward a minimum is occurring.<br>
                                 </p>
 
-                                <h6>Momentum</h6>
+                                <h6>First Moment - Momentum</h6>
                                 <p>
                                     Momentum tracks the direction of the gradient using an exponentially weighted average. Let \( g_t(\alpha) \) denote the gradient of the loss with respect to \( \alpha \).<br>
                                     since the gradient formula is<br>
@@ -1077,7 +1077,7 @@ config = {
                                     Here, where \( \beta_1 \) is the momentum parameter. A common choice \( \beta_1 \) is \( 0.9 \), meaning a weight of \( 90\% \) to the past gradient and \( 10\% \) to the current gradient.<br>
                                 </p>
 
-                                <h6>Volatility</h6>
+                                <h6>Second Moment - Volatility</h6>
                                 <p>
                                     Volatility tracks the magnitude of gradients using an exponential weighted moving average of squared gradients.<br>
                                     <br>
