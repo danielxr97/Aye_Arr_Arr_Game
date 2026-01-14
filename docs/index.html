@@ -638,12 +638,12 @@ config = {
 
                         <p>
                             Since the NPV equation looks like this:<br>
-                            \[ \boldsymbol{ \text{NPV} = \frac{\text{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \text{Initial Cost} } \]<br> <!-- The square brackets will center-align the text and the round brackets will keep it like it's a regular text -->
+                            \[ \boldsymbol{ \mathrm{NPV} = \frac{\mathrm{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \mathrm{Initial Cost} } \]<br> <!-- The square brackets will center-align the text and the round brackets will keep it like it's a regular text -->
                             <br>
                             Then, we will solve for Initial Cost:<br>
-                            \[ \text{Initial Cost} = \frac{\text{CF}}{r}\left(1 - (1 + r)^{-t}\right) - \text{NPV} \]<br>
-                            \[ \text{Initial Cost} = \frac{\text{CF}}{r}\left(1 - (1 + r)^{-t}\right) - 0 \]<br>
-                            \[ \text{Initial Cost} = \frac{\text{CF}}{r}\left(1 - (1 + r)^{-t}\right) \]<br>
+                            \[ \mathrm{Initial Cost} = \frac{\mathrm{CF}}{r}\left(1 - (1 + r)^{-t}\right) - \mathrm{NPV} \]<br>
+                            \[ \mathrm{Initial Cost} = \frac{\mathrm{CF}}{r}\left(1 - (1 + r)^{-t}\right) - 0 \]<br>
+                            \[ \mathrm{Initial Cost} = \frac{\mathrm{CF}}{r}\left(1 - (1 + r)^{-t}\right) \]<br>
                             <br>
                             Now that we have all of the variables, we can solve for the NPV.<br>
                         </p>
@@ -837,7 +837,7 @@ config = {
                                 The Bisection method is calculated by starting with an interval range that is between the numbers \( 0 \) and \( 1 \), such as \([0, 0.5]\), for example. 
                                 From there, we will compute the midpoint or the average number for those two values, which will look like this:<br>
                                 <br>
-                                \( \text{midpoint} = \frac{0 + 0.5}{2} \)<br>
+                                \( \mathrm{midpoint} = \frac{0 + 0.5}{2} \)<br>
                                 <br>
                                 Once we obtain the midpoint, we use it as the pirate's guess for the r-value for the NPV calculation, so we perform \(NPV(0.25)\).<br>
                                     - If it comes out that the NPV is positive, we know that the midpoint is too low and we will set it as the pirate's lower limit: \([0.25,0.5]\)<br>
@@ -852,8 +852,8 @@ config = {
                                 Once we find the slope, we can also calculate the NPV value at the chosen r-value.<br>
                                 <br>
                                 The first step is to calculate the derivative of the NPV function with respect to r<br>
-                                \[ \text{NPV} = \frac{\text{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \text{Initial Cost} \]<br>
-                                \[ \frac{d}{dr} \text{NPV} = \frac{\text{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \text{Initial Cost} \]<br>
+                                \[ \mathrm{NPV} = \frac{\mathrm{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \mathrm{Initial Cost} \]<br>
+                                \[ \frac{d}{dr} \mathrm{NPV} = \frac{\mathrm{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \mathrm{Initial Cost} \]<br>
                                 Let<br>
                                 \[ f(r) = 1 - (1 + r)^{-t} \]<br>
                                 Since<br>
@@ -864,11 +864,11 @@ config = {
                                 Also, since<br>
                                 \[ \frac{d}{dr} f(r) \cdot h(r) = g(r) \cdot f'(r) + f(r) \cdot g'(r) \]<br>
                                 Then<br>
-                                \[ \frac{d}{dr}  \text{NPV} = \text{CFs} \cdot r^{-1} \cdot (1 - (1 + r)^{-t}) - \text{Initial Cost} \]<br>
-                                \[ \frac{d}{dr}  \text{NPV} = (1 - (1 + r)^{-t}) \cdot \text{CFs} \cdot (-r)^{-2} + \text{CFs} \cdot r^{-1} \cdot t \cdot (1 + r)^{-(t + 1)} - 0 \]<br>
-                                \[ \frac{d}{dr}  \text{NPV} = \frac{\text{CFs}}{r} \cdot t \cdot (1 + r)^{-(t + 1)} - \frac{\text{CFs}}{r^{2}} \cdot (1 - (1 + r)^{-t}) \]<br>
+                                \[ \frac{d}{dr}  \mathrm{NPV} = \mathrm{CFs} \cdot r^{-1} \cdot (1 - (1 + r)^{-t}) - \mathrm{Initial Cost} \]<br>
+                                \[ \frac{d}{dr}  \mathrm{NPV} = (1 - (1 + r)^{-t}) \cdot \mathrm{CFs} \cdot (-r)^{-2} + \mathrm{CFs} \cdot r^{-1} \cdot t \cdot (1 + r)^{-(t + 1)} - 0 \]<br>
+                                \[ \frac{d}{dr}  \mathrm{NPV} = \frac{\mathrm{CFs}}{r} \cdot t \cdot (1 + r)^{-(t + 1)} - \frac{\mathrm{CFs}}{r^{2}} \cdot (1 - (1 + r)^{-t}) \]<br>
                                 Therefore<br>
-                                \[ \boxed{ \boldsymbol{ \text{NPV'} = \frac{\text{CFs}}{r} \cdot t \cdot (1 + r)^{-(t + 1)} - \frac{\text{CFs}}{r^{2}} \cdot (1 - (1 + r)^{-t}) } } \]<br>
+                                \[ \boxed{ \boldsymbol{ \mathrm{NPV'} = \frac{\mathrm{CFs}}{r} \cdot t \cdot (1 + r)^{-(t + 1)} - \frac{\mathrm{CFs}}{r^{2}} \cdot (1 - (1 + r)^{-t}) } } \]<br>
                                 Or, since the numerical derivative has a higher accuracy, we can calculate NPV' this way<br>
                                 By definition<br>
                                 \[ f'(r) = \frac{(f(r + h) - f(r - h))}{2h} \]<br>
@@ -879,8 +879,8 @@ config = {
                             </p>
 
                             <ul class="text-list">
-                                <li>\( r_f = \text{min}(1.0, r + h) \)</li>
-                                <li>\( r_b = \text{max}(1 \cdot 10^{-8}, r - h) \)</li>
+                                <li>\( r_f = \mathrm{min}(1.0, r + h) \)</li>
+                                <li>\( r_b = \mathrm{max}(1 \cdot 10^{-8}, r - h) \)</li>
                             </ul>
 
                             <p>
@@ -903,14 +903,14 @@ config = {
                                 Now that we know how to find NPV', we can proceed forward and use the linear approximation equation to approximate the function of the IRR, allowing us to find its value.<br>
                                 <br>
                                 The linear approximation equation is<br>
-                                \[ y = \text{NPV}(r) + \text{NPV’}(r) \cdot (x - r) \]<br>
+                                \[ y = \mathrm{NPV}(r) + \mathrm{NPV’}(r) \cdot (x - r) \]<br>
                                 Then, we let \( y = 0 \) so we can isolate for \( x \), which is the IRR value we are approximating.<br>
-                                \[ 0 = \text{NPV}(r) + \text{NPV’}(r) \cdot (x - r) \]<br>
-                                \[ x = r - \frac{\text{NPV}(r)}{\text{NPV'}(r)} \]<br>
+                                \[ 0 = \mathrm{NPV}(r) + \mathrm{NPV’}(r) \cdot (x - r) \]<br>
+                                \[ x = r - \frac{\mathrm{NPV}(r)}{\mathrm{NPV'}(r)} \]<br>
                                 The result for \( x \), as mentioned above, is the approximation for IRR that the Pirate will use during its turn.<br>
                                 <br>
                                 However, we want to control how aggressively the pirate guesses the \( r \)-value of the player. Therefore, we will use alpha, \( \alpha \), to do that.<br>
-                                \[ \boxed{ \boldsymbol{ x = r - \alpha \cdot \frac{\text{NPV}(r)}{\text{NPV'}(r)} } } \]<br>
+                                \[ \boxed{ \boldsymbol{ x = r - \alpha \cdot \frac{\mathrm{NPV}(r)}{\mathrm{NPV'}(r)} } } \]<br>
                             </p>
                     
                         <h4>Hard Level - Machine Learning</h4>
@@ -922,22 +922,22 @@ config = {
                             <div class="card-h5-text">
                                 <p>
                                     We used AdaGrad to optimize the aggressiveness parameter of the Newton–Raphson method rather than the IRR directly. 
-                                    A loss function is defined to quantify how far the Newton-updated IRR estimate deviates from the root condition \(\text{NPV}(r) = 0 \), with the aggressiveness parameter \( \alpha \) explicitly influencing the update step. 
+                                    A loss function is defined to quantify how far the Newton-updated IRR estimate deviates from the root condition \(\mathrm{NPV}(r) = 0 \), with the aggressiveness parameter \( \alpha \) explicitly influencing the update step. 
                                     Optimizing \( \alpha \) allows the algorithm to take larger steps when far from the solution and progressively smaller, more stable steps as the estimate converges toward the correct IRR.<br>
                                     <br>
                                     The Newton-Raphson equation for finding the \(r\)-value using \( r(\alpha) \) is<br>
-                                    \[ x(\alpha) = r - \alpha \cdot \frac{\text{NPV}(r)}{\text{NPV'}(r)} \]<br>
+                                    \[ x(\alpha) = r - \alpha \cdot \frac{\mathrm{NPV}(r)}{\mathrm{NPV'}(r)} \]<br>
                                     Or we can also define it like this<br>
-                                    \[ r(\alpha) = r - \alpha \cdot \frac{\text{NPV}(r)}{\text{NPV'}(r)} \]<br>
+                                    \[ r(\alpha) = r - \alpha \cdot \frac{\mathrm{NPV}(r)}{\mathrm{NPV'}(r)} \]<br>
                                     <br>
                                     The loss function<br>
-                                    \[ \boldsymbol{ L(\alpha) = \tfrac{1}{2} \text{NPV}(r(\alpha))^{2} } \]<br>
+                                    \[ \boldsymbol{ L(\alpha) = \tfrac{1}{2} \mathrm{NPV}(r(\alpha))^{2} } \]<br>
                                     The loss function we use is a squared-error loss:
                                 </p>
 
                                 <ul class="text-list">
-                                    <li>If \( \text{NPV}(r(\alpha)) = 0 \) our loss function \( L(\alpha) = 0 \).</li>
-                                    <li>If \( \text{NPV}(r(\alpha)) \) is large (positive or negative), our loss function \( L(\alpha) \) is large.</li>
+                                    <li>If \( \mathrm{NPV}(r(\alpha)) = 0 \) our loss function \( L(\alpha) = 0 \).</li>
+                                    <li>If \( \mathrm{NPV}(r(\alpha)) \) is large (positive or negative), our loss function \( L(\alpha) \) is large.</li>
                                 </ul>
 
                                 <p>
@@ -949,32 +949,32 @@ config = {
                                 <ul class="text-list">
                                     <li>It is easy to compute.</li>
                                     <li>It is easy to differentiate.</li>
-                                    <li>Always bigger than or equal to zero, \( L(\alpha) = 0 \)  exactly when \( \text{NPV}(r(\alpha)) = 0 \).</li>
+                                    <li>Always bigger than or equal to zero, \( L(\alpha) = 0 \)  exactly when \( \mathrm{NPV}(r(\alpha)) = 0 \).</li>
                                 </ul>
 
                                 <p>
                                     To apply AdaGrad, we compute the derivative of the loss with respect to \( \alpha \).<br>
                                     <br>
                                     Using the chain rule<br>
-                                    \[ \frac{d}{d\alpha} L = \tfrac{1}{2} \cdot 2 \text{NPV}(r(\alpha)) \cdot \frac{d}{d\alpha} \text{NPV}(r(\alpha)) \]<br>
+                                    \[ \frac{d}{d\alpha} L = \tfrac{1}{2} \cdot 2 \mathrm{NPV}(r(\alpha)) \cdot \frac{d}{d\alpha} \mathrm{NPV}(r(\alpha)) \]<br>
                                     Then<br>
-                                    \[ \frac{d}{d\alpha} \text{NPV} = \text{NPV'}(r(\alpha)) \cdot \frac{d}{d\alpha} r(\alpha) \]<br>
+                                    \[ \frac{d}{d\alpha} \mathrm{NPV} = \mathrm{NPV'}(r(\alpha)) \cdot \frac{d}{d\alpha} r(\alpha) \]<br>
                                     So<br>
-                                    \[ \frac{d}{d\alpha} L = \text{NPV}(r(\alpha)) \cdot \text{NPV'}(r(\alpha)) \cdot \frac{d}{d\alpha} r(\alpha) \]<br>
+                                    \[ \frac{d}{d\alpha} L = \mathrm{NPV}(r(\alpha)) \cdot \mathrm{NPV'}(r(\alpha)) \cdot \frac{d}{d\alpha} r(\alpha) \]<br>
                                     <br>
                                     Then, the derivative of \( \frac{d}{d\alpha} r(\alpha) \) is<br>
-                                    \[ \frac{d}{d\alpha} r(\alpha) = r - \alpha \cdot \frac{\text{NPV}(r)}{\text{NPV'}(r)} \]<br>
-                                    \[ \frac{d}{d\alpha} r(\alpha) = 0 - 1 \cdot \frac{\text{NPV}(r)}{\text{NPV'}(r)} = -\frac{\text{NPV}(r)}{\text{NPV'}(r)} \]<br>
+                                    \[ \frac{d}{d\alpha} r(\alpha) = r - \alpha \cdot \frac{\mathrm{NPV}(r)}{\mathrm{NPV'}(r)} \]<br>
+                                    \[ \frac{d}{d\alpha} r(\alpha) = 0 - 1 \cdot \frac{\mathrm{NPV}(r)}{\mathrm{NPV'}(r)} = -\frac{\mathrm{NPV}(r)}{\mathrm{NPV'}(r)} \]<br>
                                     Therefore<br>
-                                    \[ \boldsymbol{ \frac{d}{d\alpha} r(\alpha) = \text{NPV}(r(\alpha)) \cdot \text{NPV'}(r(\alpha)) \cdot -\frac{\text{NPV}(r)}{\text{NPV'}(r)} } \]<br>
+                                    \[ \boldsymbol{ \frac{d}{d\alpha} r(\alpha) = \mathrm{NPV}(r(\alpha)) \cdot \mathrm{NPV'}(r(\alpha)) \cdot -\frac{\mathrm{NPV}(r)}{\mathrm{NPV'}(r)} } \]<br>
                                     As we have done before, here, we can also use the numerical derivative instead of differentiating the equation<br>
                                     \[ \frac{d}{d\alpha} L(\alpha) = \frac{(L(\alpha + h) + L(\alpha - h)}{2h} \]<br>
                                     We will make new variables for plus and minus \( \alpha \) and the \( r \)-value (\( \alpha_p \) and \( \alpha_m \)), and limit them to our domain and to avoid division by zero
                                 </p>
 
                                 <ul class="text-list">
-                                    <li>\( \alpha_p = \text{max}(0.05, \text{min}(1.0, \alpha + \epsilon ) \))</li>
-                                    <li>\(\alpha_m = \text{max}(0.05, \text{min}(1.0, \alpha - \epsilon) \))</li>
+                                    <li>\( \alpha_p = \mathrm{max}(0.05, \mathrm{min}(1.0, \alpha + \epsilon ) \))</li>
+                                    <li>\(\alpha_m = \mathrm{max}(0.05, \mathrm{min}(1.0, \alpha - \epsilon) \))</li>
                                 </ul>
 
                                 <p>
@@ -1054,7 +1054,7 @@ config = {
 
                                 <p>
                                     Conceptually, Adam can be summarized as<br>
-                                    \[ \boldsymbol{ \text{Adam} = \text{AdaGrad} + \text{Momentum} + \text{Bias Correction} } \]<br>
+                                    \[ \boldsymbol{ \mathrm{Adam} = \mathrm{AdaGrad} + \mathrm{Momentum} + \mathrm{Bias Correction} } \]<br>
                                     Adam improves AdaGrad in two key ways:
                                 </p>
 
