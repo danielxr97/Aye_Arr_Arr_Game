@@ -641,9 +641,9 @@ config = {
                             \[ \boldsymbol{ \mathrm{NPV} = \frac{\mathrm{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \mathbf{Initial\ Cost} } \]<br> <!-- The square brackets will center-align the text and the round brackets will keep it like it's a regular text -->
                             <br>
                             Then, we will solve for Initial Cost:<br>
-                            \[ \mathbf{Initial\ Cost} = \frac{\mathrm{CF}}{r}\left(1 - (1 + r)^{-t}\right) - \mathrm{NPV} \]<br>
-                            \[ \mathbf{Initial\ Cost} = \frac{\mathrm{CF}}{r}\left(1 - (1 + r)^{-t}\right) - 0 \]<br>
-                            \[ \mathbf{Initial\ Cost} = \frac{\mathrm{CF}}{r}\left(1 - (1 + r)^{-t}\right) \]<br>
+                            \[ \mathrm{Initial\ Cost} = \frac{\mathrm{CF}}{r}\left(1 - (1 + r)^{-t}\right) - \mathrm{NPV} \]<br>
+                            \[ \mathrm{Initial\ Cost} = \frac{\mathrm{CF}}{r}\left(1 - (1 + r)^{-t}\right) - 0 \]<br>
+                            \[ \mathrm{Initial\ Cost} = \frac{\mathrm{CF}}{r}\left(1 - (1 + r)^{-t}\right) \]<br>
                             <br>
                             Now that we have all of the variables, we can solve for the NPV.<br>
                         </p>
@@ -852,8 +852,8 @@ config = {
                                 Once we find the slope, we can also calculate the NPV value at the chosen r-value.<br>
                                 <br>
                                 The first step is to calculate the derivative of the NPV function with respect to r<br>
-                                \[ \mathrm{NPV} = \frac{\mathrm{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \mathbf{Initial\ Cost} \]<br>
-                                \[ \frac{d}{dr} \mathrm{NPV} = \frac{\mathrm{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \mathbf{Initial\ Cost} \]<br>
+                                \[ \mathrm{NPV} = \frac{\mathrm{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \mathrm{Initial\ Cost} \]<br>
+                                \[ \frac{d}{dr} \mathrm{NPV} = \frac{\mathrm{CFs}}{r}\left(1 - (1 + r)^{-t}\right) - \mathrm{Initial\ Cost} \]<br>
                                 Let<br>
                                 \[ f(r) = 1 - (1 + r)^{-t} \]<br>
                                 Since<br>
@@ -864,7 +864,7 @@ config = {
                                 Also, since<br>
                                 \[ \frac{d}{dr} f(r) \cdot h(r) = g(r) \cdot f'(r) + f(r) \cdot g'(r) \]<br>
                                 Then<br>
-                                \[ \frac{d}{dr}  \mathrm{NPV} = \mathrm{CFs} \cdot r^{-1} \cdot (1 - (1 + r)^{-t}) - \mathbf{Initial\ Cost} \]<br>
+                                \[ \frac{d}{dr}  \mathrm{NPV} = \mathrm{CFs} \cdot r^{-1} \cdot (1 - (1 + r)^{-t}) - \mathrm{Initial\ Cost} \]<br>
                                 \[ \frac{d}{dr}  \mathrm{NPV} = (1 - (1 + r)^{-t}) \cdot \mathrm{CFs} \cdot (-r)^{-2} + \mathrm{CFs} \cdot r^{-1} \cdot t \cdot (1 + r)^{-(t + 1)} - 0 \]<br>
                                 \[ \frac{d}{dr}  \mathrm{NPV} = \frac{\mathrm{CFs}}{r} \cdot t \cdot (1 + r)^{-(t + 1)} - \frac{\mathrm{CFs}}{r^{2}} \cdot (1 - (1 + r)^{-t}) \]<br>
                                 Therefore<br>
